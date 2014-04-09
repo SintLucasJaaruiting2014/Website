@@ -109,7 +109,7 @@ return array(
 		'SintLucas\Provider\MediaServiceProvider',
 		'SintLucas\Provider\PortfolioServiceProvider',
 		'SintLucas\Provider\SchoolServiceProvider',
-		'SintLucas\Provider\SocialServiceProvider',
+		'SintLucas\Provider\ProfileServiceProvider',
 		'SintLucas\Provider\UserServiceProvider',
 		'SintLucas\Provider\DataCollectorServiceProvider',
 
