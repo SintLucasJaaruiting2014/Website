@@ -19,11 +19,6 @@ class SchoolServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['school.repos.class'] = $this->app->share(function($app)
-		{
-			return new ClassRepo();
-		});
-
 		$this->app['school.repos.location'] = $this->app->share(function($app)
 		{
 			return new LocationRepo();
@@ -48,7 +43,6 @@ class SchoolServiceProvider extends ServiceProvider {
 	public function provides()
 	{
 		return array(
-			'school.repos.class',
 			'school.repos.location',
 			'school.repos.program',
 			'school.repos.year'
