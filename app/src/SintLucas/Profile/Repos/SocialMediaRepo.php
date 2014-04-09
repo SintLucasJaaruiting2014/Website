@@ -1,24 +1,14 @@
 <?php namespace SintLucas\Profile\Repos;
 
-use SintLucas\Profile\Models\SocialMedia;
+use SintLucas\Core\Repos\EloquentRepo;
 
-class SocialMediaRepo {
-
-	/**
-	 * Social media model instance.
-	 *
-	 * @var \SintLucas\Profile\Models\SocialMedia
-	 */
-	protected $model;
+class SocialMediaRepo extends EloquentRepo {
 
 	/**
-	 * Create a new social media repository instance.
+	 * Validation rules.
 	 *
-	 * @param \SintLucas\Profile\Models\SocialMedia $model
+	 * @var array
 	 */
-	public function __construct(SocialMedia $model)
-	{
-		$this->model = $model;
-	}
+	protected $rules = array();
 
 }
