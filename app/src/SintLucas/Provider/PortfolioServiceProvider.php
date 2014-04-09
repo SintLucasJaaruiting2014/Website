@@ -20,14 +20,14 @@ class PortfolioServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['portfolio.repos.item'] = $this->app->share(function($app)
+		$this->app['portfolio.repo.item'] = $this->app->share(function($app)
 		{
 			return new ItemRepo();
 		});
 
 		$this->app['portfolio.service'] = $this->app->share(function($app)
 		{
-			return new PortfolioService($app['portfolio.repos.item']);
+			return new PortfolioService($app['portfolio.repo.item']);
 		});
 	}
 
@@ -39,7 +39,7 @@ class PortfolioServiceProvider extends ServiceProvider {
 	public function provides()
 	{
 		return array(
-			'portfolio.repos.item',
+			'portfolio.repo.item',
 			'portfolio.service'
 		);
 	}

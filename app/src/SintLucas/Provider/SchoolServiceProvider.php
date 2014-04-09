@@ -27,22 +27,22 @@ class SchoolServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['school.repos.location'] = $this->app->share(function($app)
+		$this->app['school.repo.location'] = $this->app->share(function($app)
 		{
 			return new LocationRepo(new Location);
 		});
 
-		$this->app['school.repos.program'] = $this->app->share(function($app)
+		$this->app['school.repo.program'] = $this->app->share(function($app)
 		{
 			return new ProgramRepo(new Program);
 		});
 
-		$this->app['school.repos.type'] = $this->app->share(function($app)
+		$this->app['school.repo.type'] = $this->app->share(function($app)
 		{
 			return new TypeRepo(new Type);
 		});
 
-		$this->app['school.repos.year'] = $this->app->share(function($app)
+		$this->app['school.repo.year'] = $this->app->share(function($app)
 		{
 			return new YearRepo(new Year);
 		});
@@ -50,10 +50,10 @@ class SchoolServiceProvider extends ServiceProvider {
 		$this->app['school.service'] = $this->app->share(function($app)
 		{
 			return new SchoolService(
-				$app['school.repos.location'],
-				$app['school.repos.program'],
-				$app['school.repos.type'],
-				$app['school.repos.year']
+				$app['school.repo.location'],
+				$app['school.repo.program'],
+				$app['school.repo.type'],
+				$app['school.repo.year']
 			);
 		});
 	}
@@ -66,10 +66,10 @@ class SchoolServiceProvider extends ServiceProvider {
 	public function provides()
 	{
 		return array(
-			'school.repos.location',
-			'school.repos.program',
-			'school.repos.type',
-			'school.repos.year',
+			'school.repo.location',
+			'school.repo.program',
+			'school.repo.type',
+			'school.repo.year',
 			'school.service'
 		);
 	}

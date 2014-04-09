@@ -1,6 +1,10 @@
 <?php namespace SintLucas\Provider;
 
 use Illuminate\Support\ServiceProvider;
+use SintLucas\User\Models\Role;
+use SintLucas\User\Models\User;
+use SintLucas\User\Repos\RoleRepo;
+use SintLucas\User\Repos\UserRepo;
 
 class UserServiceProvider extends ServiceProvider {
 
@@ -18,14 +22,14 @@ class UserServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['user.repos.role'] = $this->app->share(function($app)
+		$this->app['user.repo.role'] = $this->app->share(function($app)
 		{
-			return new RoleRepo();
+			return new RoleRepo(new Role);
 		});
 
-		$this->app['user.repos.user'] = $this->app->share(function($app)
+		$this->app['user.repo.user'] = $this->app->share(function($app)
 		{
-			return new UserRepo();
+			return new UserRepo(new User);
 		});
 	}
 
@@ -37,8 +41,8 @@ class UserServiceProvider extends ServiceProvider {
 	public function provides()
 	{
 		return array(
-			'user.repos.role',
-			'user.repos.user'
+			'user.repo.role',
+			'user.repo.user'
 		);
 	}
 

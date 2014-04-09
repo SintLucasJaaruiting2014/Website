@@ -22,24 +22,24 @@ class MediaServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['media.repos.image'] = $this->app->share(function($app)
+		$this->app['media.repo.image'] = $this->app->share(function($app)
 		{
 			return new ImageRepo();
 		});
 
-		$this->app['media.repos.video'] = $this->app->share(function($app)
+		$this->app['media.repo.video'] = $this->app->share(function($app)
 		{
 			return new VideoRepo();
 		});
 
-		$this->app['media.repos.media'] = $this->app->share(function($app)
+		$this->app['media.repo.media'] = $this->app->share(function($app)
 		{
 			return new MediaRepo();
 		});
 
 		$this->app['media.service'] = $this->app->share(function($app)
 		{
-			return new MediaService($app['media.repos.media'], $app['media.repos.image'], $app['media.repos.video']);
+			return new MediaService($app['media.repo.media'], $app['media.repo.image'], $app['media.repo.video']);
 		});
 	}
 
@@ -51,9 +51,9 @@ class MediaServiceProvider extends ServiceProvider {
 	public function provides()
 	{
 		return array(
-			'media.repos.image',
-			'media.repos.video',
-			'media.repos.media'
+			'media.repo.image',
+			'media.repo.video',
+			'media.repo.media'
 		);
 	}
 
