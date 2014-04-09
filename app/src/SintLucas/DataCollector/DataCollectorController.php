@@ -6,6 +6,7 @@ use SintLucas\DataCollector\Views\ProfileView;
 use SintLucas\DataCollector\Views\QuestionView;
 use SintLucas\Portfolio\PortfolioService;
 use SintLucas\Profile\ProfileService;
+use SintLucas\School\SchoolService;
 
 class DataCollectorController extends Controller {
 
@@ -24,16 +25,33 @@ class DataCollectorController extends Controller {
 	protected $portfolioService;
 
 	/**
+	 * School service instance.
+	 *
+	 * @var \SintLucas\School\SchoolService
+	 */
+	protected $schoolService;
+
+	/**
 	 * Create a new data collector controller.
 	 *
 	 * @param \SintLucas\Profile\ProfileService     $profileService
 	 * @param \SintLucas\Portfolio\PortfolioService $portfolioService
 	 */
-	public function __construct(ProfileService $profileService, PortfolioService $portfolioService)
+	public function __construct(ProfileService $profileService, PortfolioService $portfolioService, SchoolService $schoolService)
 	{
-		$this->profileService = $profileService;
+		$this->profileService   = $profileService;
 		$this->portfolioService = $portfolioService;
-		$this->user = new \Illuminate\Support\Fluent(array('id' => 1));
+		$this->schoolService    = $schoolService;
+
+		$this->user = new \Illuminate\Support\Fluent(array(
+			'id'             => 1,
+			'school_email'   => 'i.heimans@sintlucasedu.nl',
+			'personal_email' => null,
+			'password'       => null,
+			'reset_hash'     => null,
+			'created_at'     => '2014-04-09 20:26:24',
+			'updated_at'     => '2014-04-09 20:26:24'
+		));
 	}
 
 	/**
@@ -45,15 +63,21 @@ class DataCollectorController extends Controller {
 	{
 		if($profile = $this->profileService->findProfileByUserId($this->user->id))
 		{
-			$answers        = $this->profileService->getAnswersForProfile($profile);
-			$portfolioItems = $this->portfolioService->getItemsByProfileId($profile->id);
-			$properties     = $this->profileService->getPropertiesForProfile($profile);
+			$answers             = $this->profileService->getAnswersForProfile($profile);
+			$portfolioItems      = $this->portfolioService->getItemsByProfileId($profile->id);
+			$program             = $this->schoolService->findProgramById($profile->program_id);
+			$properties          = $this->profileService->getPropertiesForProfile($profile);
+			$socialMediaAccounts = $this->profileService->getSocialMediaWithTypesForProfile($profile);
+			$user                = $this->user;
 
 			return new ProfileView(compact(
 				'answers',
 				'portfolioItems',
 				'profile',
-				'properties'
+				'program',
+				'properties',
+				'socialMediaAccounts',
+				'user'
 			));
 		}
 	}
