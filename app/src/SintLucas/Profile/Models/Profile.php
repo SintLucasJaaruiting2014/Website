@@ -25,4 +25,24 @@ class Profile extends Model {
 		'quote'
 	);
 
+	/**
+	 * Belongs to relation with the program model.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Model
+	 */
+	public function program()
+	{
+		return $this->belongsTo('SintLucas\School\Models\Program');
+	}
+
+	/**
+	 * Belongs to relation with the user model.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Model
+	 */
+	public function user()
+	{
+		return $this->belongsTo('SintLucas\User\Models\User');
+	}
+
 }
