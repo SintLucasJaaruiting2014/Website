@@ -26,6 +26,10 @@
 						<p class="list-group-item-text">{{ $user->personal_email or 'Je hebt nog geen persoonlijk email adres opgegeven.' }}</p>
 					</li>
 					<li class="list-group-item">
+						<h4 class="list-group-item-heading">Quote</h4>
+						<p class="list-group-item-text">{{ $user->quote or 'Je hebt nog geen quote opgegeven.' }}</p>
+					</li>
+					<li class="list-group-item">
 						<h4 class="list-group-item-heading">Social Media</h4>
 						<p class="list-group-item-text">
 						@if(count($socialMediaAccounts) > 0)
