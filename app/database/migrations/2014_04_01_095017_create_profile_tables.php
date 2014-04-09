@@ -34,7 +34,9 @@ class CreateProfileTables extends Migration {
 			$table->engine = 'InnoDB';
 
 			$table->increments('id');
-			$table->string('name');
+			$table->string('name', 50);
+			$table->string('url');
+			$table->string('icon', 50);
 			$table->timestamps();
 		});
 
@@ -45,7 +47,7 @@ class CreateProfileTables extends Migration {
 			$table->increments('id');
 			$table->integer('profile_id')->unsigned();
 			$table->integer('type_id')->unsigned();
-			$table->string('url');
+			$table->string('username');
 			$table->timestamps();
 
 			$table->foreign('profile_id')->references('id')->on('profile_profiles');
