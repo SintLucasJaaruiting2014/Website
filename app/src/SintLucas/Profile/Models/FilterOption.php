@@ -1,8 +1,11 @@
 <?php namespace SintLucas\Profile\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use SintLucas\Profile\Traits\BelongsToFilter;
 
 class FilterOption extends Model {
+
+	use BelongsToFilter;
 
 	/**
 	 * The table associated with the model.
@@ -10,15 +13,5 @@ class FilterOption extends Model {
 	 * @var string
 	 */
 	protected $table = 'profile_filteroptions';
-
-	/**
-	 * Belongs to relation with the filter model.
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
-	 */
-	public function filter()
-	{
-		return $this->belongsTo('SintLucas\Profile\Models\Filter');
-	}
 
 }
