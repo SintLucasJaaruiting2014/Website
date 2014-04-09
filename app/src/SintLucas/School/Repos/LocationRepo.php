@@ -1,24 +1,14 @@
 <?php namespace SintLucas\School\Repos;
 
-use SintLucas\School\Models\Location;
+use SintLucas\Core\Repos\EloquentRepo;
 
-class LocationRepo {
-
-	/**
-	 * Social media model instance.
-	 *
-	 * @var \SintLucas\School\Models\Location
-	 */
-	protected $model;
+class LocationRepo extends EloquentRepo {
 
 	/**
-	 * Create a new social media repository instance.
+	 * Validation rules.
 	 *
-	 * @param \SintLucas\School\Models\Location $model
+	 * @var array
 	 */
-	public function __construct(Location $model)
-	{
-		$this->model = $model;
-	}
+	protected $rules = array();
 
 }

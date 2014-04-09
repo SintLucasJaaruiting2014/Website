@@ -3,7 +3,7 @@
 use Illuminate\Database\Eloquent\Model;
 use SintLucas\School\Traits\HasManyPrograms;
 
-class Year extends Model {
+class Type extends Model {
 
 	use HasManyPrograms;
 
