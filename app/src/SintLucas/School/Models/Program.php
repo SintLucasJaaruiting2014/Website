@@ -1,11 +1,8 @@
 <?php namespace SintLucas\School\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use SintLucas\School\Traits\KlassTrait;
 
 class Program extends Model {
-
-	use KlassTrait;
 
 	/**
 	 * The table associated with the model.
@@ -13,5 +10,20 @@ class Program extends Model {
 	 * @var string
 	 */
 	protected $table = 'school_programs';
+
+	public function location()
+	{
+		return $this->belongsTo('SintLucas\School\Models\Location');
+	}
+
+	public function type()
+	{
+		return $this->belongsTo('SintLucas\School\Models\Type');
+	}
+
+	public function year()
+	{
+		return $this->belongsTo('SintLucas\School\Models\Year');
+	}
 
 }

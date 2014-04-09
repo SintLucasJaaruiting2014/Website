@@ -1,11 +1,11 @@
 <?php namespace SintLucas\School\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use SintLucas\School\Traits\KlassTrait;
+use SintLucas\School\Traits\HasManyPrograms;
 
 class Year extends Model {
 
-	use KlassTrait;
+	use HasManyPrograms;
 
 	/**
 	 * The table associated with the model.

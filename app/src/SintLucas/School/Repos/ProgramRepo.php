@@ -1,24 +1,14 @@
 <?php namespace SintLucas\School\Repos;
 
-use SintLucas\School\Models\Program;
+use SintLucas\Core\Repos\EloquentRepo;
 
-class ProgramRepo {
-
-	/**
-	 * Social media model instance.
-	 *
-	 * @var \SintLucas\School\Models\Program
-	 */
-	protected $model;
+class ProgramRepo extends EloquentRepo {
 
 	/**
-	 * Create a new social media repository instance.
+	 * Validation rules.
 	 *
-	 * @param \SintLucas\School\Models\Program $model
+	 * @var array
 	 */
-	public function __construct(Program $model)
-	{
-		$this->model = $model;
-	}
+	protected $rules = array();
 
 }

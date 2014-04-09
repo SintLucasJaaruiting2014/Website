@@ -1,17 +1,14 @@
-<?php namespace SintLucas\School\Models;
+<?php namespace SintLucas\School\Repos;
 
-use Illuminate\Database\Eloquent\Model;
-use SintLucas\School\Traits\KlassTrait;
+use SintLucas\Core\Repos\EloquentRepo;
 
-class Location extends Model {
-
-	use KlassTrait;
+class LocationRepo extends EloquentRepo {
 
 	/**
-	 * The table associated with the model.
+	 * Validation rules.
 	 *
-	 * @var string
+	 * @var array
 	 */
-	protected $table = 'school_locations';
+	protected $rules = array();
 
 }

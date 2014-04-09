@@ -1,24 +1,14 @@
 <?php namespace SintLucas\School\Repos;
 
-use SintLucas\School\Models\Year;
+use SintLucas\Core\Repos\EloquentRepo;
 
-class TypeRepo {
-
-	/**
-	 * Social media model instance.
-	 *
-	 * @var \SintLucas\School\Models\Year
-	 */
-	protected $model;
+class TypeRepo extends EloquentRepo {
 
 	/**
-	 * Create a new social media repository instance.
+	 * Validation rules.
 	 *
-	 * @param \SintLucas\School\Models\Year $model
+	 * @var array
 	 */
-	public function __construct(Year $model)
-	{
-		$this->model = $model;
-	}
+	protected $rules = array();
 
 }
