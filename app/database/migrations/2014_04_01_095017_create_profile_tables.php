@@ -20,6 +20,7 @@ class CreateProfileTables extends Migration {
 			$table->integer('program_id')->unsigned();
 			$table->integer('user_id')->unsigned();
 			$table->string('first_name');
+			$table->string('last_name_prefix');
 			$table->string('last_name');
 			$table->string('quote', 300);
 			$table->timestamps();
