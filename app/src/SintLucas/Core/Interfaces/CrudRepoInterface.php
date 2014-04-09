@@ -18,24 +18,22 @@ interface CrudRepoInterface {
 	public function find($id);
 
 	/**
-	 * Find a record by a specific field and eagerload the given relations.
+	 * Find a record by the given data and eagerload the given relations.
 	 *
-	 * @param  string $field
-	 * @param  int    $id
-	 * @param  array  $relations
+	 * @param  array $data
+	 * @param  array $relations
 	 * @return \Illuminate\Database\Eloquent\Model
 	 */
-	public function findBy($field, $value, $relations = array());
+	public function findBy($data = array(), $relations = array());
 
 	/**
-	 * Get records by a specific field and eagerload the given relations.
+	 * Get records by the given data and eagerload the given relations.
 	 *
-	 * @param  string $field
-	 * @param  int    $id
-	 * @param  array  $relations
+	 * @param  array $data
+	 * @param  array $relations
 	 * @return \Illuminate\Database\Eloquent\Model
 	 */
-	public function getBy($field, $value, $relations = array());
+	public function getBy($data = array(), $relations = array());
 
 	/**
 	 * Create a new record.

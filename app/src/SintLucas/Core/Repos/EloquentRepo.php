@@ -45,28 +45,35 @@ abstract class EloquentRepo {
 	}
 
 	/**
-	 * Find a record by a specific field and eagerload the given relations.
+	 * Find a record by the given data and eagerload the given relations.
 	 *
-	 * @param  string $field
-	 * @param  int    $id
-	 * @param  array  $relations
-	 * @return \Illuminate\Database\Eloquent\Model
-	 */
-	public function findBy($field, $value, $relations = array())
-	{
-		return $this->model->with($relations)->where($field, '=', $value)->first();
-	}
-
-	/**
-	 * Get records by a specific field and eagerload the given relations.
-	 *
-	 * @param  int   $id
+	 * @param  array $data
 	 * @param  array $relations
 	 * @return \Illuminate\Database\Eloquent\Model
 	 */
-	public function getBy($field, $value, $relations = array())
+	public function findBy($data = array(), $relations = array())
 	{
-		return $this->model->with($relations)->where($field, '=', $value)->get();
+		$query = $this->model->with($relations);
+
+		$this->applyWheres($query, $data);
+
+		return $query->first();
+	}
+
+	/**
+	 * Get records by the given data and eagerload the given relations.
+	 *
+	 * @param  array $data
+	 * @param  array $relations
+	 * @return \Illuminate\Database\Eloquent\Model
+	 */
+	public function getBy($data = array(), $relations = array())
+	{
+		$query = $this->model->with($relations);
+
+		$this->applyWheres($query, $data);
+
+		return $query->get();
 	}
 
 	/**
@@ -140,6 +147,21 @@ abstract class EloquentRepo {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Apply wheres from an associative array.
+	 *
+	 * @param  \Illuminate\Database\Eloquent\Builder $query
+	 * @param  array                                 $data
+	 * @return void
+	 */
+	protected function applyWheres(&$query, $data)
+	{
+		foreach($data as $key => $value)
+		{
+			$query->where($key, '=', $value);
+		}
 	}
 
 }
