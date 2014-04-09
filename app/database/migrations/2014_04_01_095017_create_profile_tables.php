@@ -17,16 +17,22 @@ class CreateProfileTables extends Migration {
 			$table->engine = 'InnoDB';
 
 			$table->increments('id');
+			$table->integer('location_id')->unsigned();
 			$table->integer('program_id')->unsigned();
 			$table->integer('user_id')->unsigned();
+			$table->integer('year_id')->unsigned();
+			$table->string('slug')->nullable();
 			$table->string('first_name');
 			$table->string('last_name_prefix')->nullable();
 			$table->string('last_name');
 			$table->string('quote', 300)->nullable();
 			$table->timestamps();
 
+			$table->unique(array('slug', 'year_id'));
+			$table->foreign('location_id')->references('id')->on('school_locations');
 			$table->foreign('program_id')->references('id')->on('school_programs');
 			$table->foreign('user_id')->references('id')->on('user_users');
+			$table->foreign('year_id')->references('id')->on('school_years');
 		});
 
 		Schema::create('profile_socialmediatypes', function($table)

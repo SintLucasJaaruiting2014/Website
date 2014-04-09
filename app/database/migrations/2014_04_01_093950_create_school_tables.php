@@ -44,14 +44,10 @@ class CreateSchoolTables extends Migration {
 			$table->engine = 'InnoDB';
 
 			$table->increments('id');
-			$table->integer('location_id')->unsigned();
 			$table->integer('type_id')->unsigned();
-			$table->integer('year_id')->unsigned();
 			$table->string('name');
 
-			$table->foreign('location_id')->references('id')->on('school_locations');
 			$table->foreign('type_id')->references('id')->on('school_types');
-			$table->foreign('year_id')->references('id')->on('school_years');
 			$table->timestamps();
 		});
 	}
