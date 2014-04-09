@@ -109,7 +109,7 @@ class ProfileService {
 	 */
 	public function findProfileByUserId($userId)
 	{
-		return $this->profileRepo->findBy(array('user_id' => $userId));
+		return $this->profileRepo->findBy(array('user_id' => $userId), array('location', 'program', 'year'));
 	}
 
 	/**

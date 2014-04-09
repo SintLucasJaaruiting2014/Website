@@ -52,6 +52,17 @@ class SchoolService {
 	}
 
 	/**
+	 * Find a location by id.
+	 *
+	 * @param  int $id
+	 * @return \SintLucas\School\Models\Location
+	 */
+	public function findLocationById($id)
+	{
+		return $this->locationRepo->find($id);
+	}
+
+	/**
 	 * Find a program by id.
 	 *
 	 * @param  int $id
@@ -59,7 +70,18 @@ class SchoolService {
 	 */
 	public function findProgramById($id)
 	{
-		return $this->programRepo->findBy(array('id' => $id), array('location', 'type', 'year'));
+		return $this->programRepo->find($id);
+	}
+
+	/**
+	 * Find a year by id.
+	 *
+	 * @param  int $id
+	 * @return \SintLucas\School\Models\Year
+	 */
+	public function findYearById($id)
+	{
+		return $this->yearRepo->find($id);
 	}
 
 }

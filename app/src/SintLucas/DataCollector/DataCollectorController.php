@@ -44,8 +44,8 @@ class DataCollectorController extends Controller {
 		$this->schoolService    = $schoolService;
 
 		$this->user = new \Illuminate\Support\Fluent(array(
-			'id'             => 1,
-			'school_email'   => 'i.heimans@sintlucasedu.nl',
+			'id'             => 596,
+			'school_email'   => '13270@sintlucasedu.nl',
 			'personal_email' => null,
 			'password'       => null,
 			'reset_hash'     => null,
@@ -64,20 +64,27 @@ class DataCollectorController extends Controller {
 		if($profile = $this->profileService->findProfileByUserId($this->user->id))
 		{
 			$answers             = $this->profileService->getAnswersForProfile($profile);
-			$portfolioItems      = $this->portfolioService->getItemsByProfileId($profile->id);
-			$program             = $this->schoolService->findProgramById($profile->program_id);
 			$properties          = $this->profileService->getPropertiesForProfile($profile);
 			$socialMediaAccounts = $this->profileService->getSocialMediaWithTypesForProfile($profile);
-			$user                = $this->user;
+
+			$program  = $this->schoolService->findProgramById($profile->program_id);
+			$location = $this->schoolService->findLocationById($profile->location_id);
+			$year     = $this->schoolService->findYearById($profile->year_id);
+
+			$portfolioItems = $this->portfolioService->getItemsByProfileId($profile->id);
+
+			$user = $this->user;
 
 			return new ProfileView(compact(
 				'answers',
+				'location',
 				'portfolioItems',
 				'profile',
 				'program',
 				'properties',
 				'socialMediaAccounts',
-				'user'
+				'user',
+				'year'
 			));
 		}
 	}

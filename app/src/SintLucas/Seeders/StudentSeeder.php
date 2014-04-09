@@ -47,9 +47,7 @@ class StudentSeeder extends Seeder {
 		$this->data = array();
 		foreach($data as $values)
 		{
-			$record = array_combine($this->keys, $values);
-			$record['programKey'] = $this->getProgramKey($record);
-			$this->data[] = $record;
+			$this->data[] = array_combine($this->keys, $values);
 		}
 	}
 
@@ -63,8 +61,8 @@ class StudentSeeder extends Seeder {
 		$locations = $this->createLocations();
 		$types     = $this->createTypes();
 		$years     = $this->createYears();
-		$programs  = $this->createPrograms($locations, $types, $years);
-		$this->createUsersAndProfiles($programs);
+		$programs  = $this->createPrograms($types);
+		$this->createUsersAndProfiles($locations, $programs, $years);
 	}
 
 	/**
@@ -102,20 +100,18 @@ class StudentSeeder extends Seeder {
 	 *
 	 * @return \Illuminate\Support\Collection
 	 */
-	public function createPrograms($locations, $types, $years)
+	public function createPrograms($types)
 	{
 		$repo = $this->app['school.repo.program'];
 
 		$programs = array();
 		foreach($this->data as $record)
 		{
-			if( ! isset($programs[$record['programKey']]))
+			if( ! isset($programs[$record['program']]))
 			{
-				$programs[$record['programKey']] = $this->findOrCreate($repo, array(
-					'location_id' => $locations[$record['location']]->id,
-					'type_id'     => $types[$record['type']]->id,
-					'year_id'     => $years[$record['year']]->id,
-					'name'        => $record['program']
+				$programs[$record['program']] = $this->findOrCreate($repo, array(
+					'type_id' => $types[$record['type']]->id,
+					'name'    => $record['program']
 				));
 			}
 		}
@@ -124,29 +120,11 @@ class StudentSeeder extends Seeder {
 	}
 
 	/**
-	 * Get the program key from the given data.
-	 *
-	 * @param  array $data
-	 * @return string
-	 */
-	protected function getProgramKey($data)
-	{
-		$fields = array(
-			'location',
-			'program',
-			'type',
-			'year'
-		);
-
-		return implode('.', array_only($data, $fields));
-	}
-
-	/**
 	 * Get all the students from the data and create the users and profiles.
 	 *
 	 * @return \Illuminate\Support\Collection
 	 */
-	public function createUsersAndProfiles($programs)
+	public function createUsersAndProfiles($locations, $programs, $years)
 	{
 		$profileRepo = $this->app['profile.repo.profile'];
 		$userRepo = $this->app['user.repo.user'];
@@ -158,8 +136,10 @@ class StudentSeeder extends Seeder {
 			));
 
 			$profile = $this->findOrCreate($profileRepo, array(
-				'program_id'       => $programs[$record['programKey']]->id,
+				'location_id'      => $locations[$record['location']]->id,
+				'program_id'       => $programs[$record['program']]->id,
 				'user_id'          => $user->id,
+				'year_id'          => $years[$record['year']]->id,
 				'first_name'       => $record['firstName'],
 				'last_name_prefix' => $record['lastNamePrefix'],
 				'last_name'        => $record['lastName']

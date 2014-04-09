@@ -15,7 +15,7 @@
 					</li>
 					<li class="list-group-item">
 						<h4 class="list-group-item-heading">Opleiding</h4>
-						<p class="list-group-item-text">{{ $program->name }} in {{ $program->location->name }}</p>
+						<p class="list-group-item-text">{{ $program->name }} in {{ $location->name }}</p>
 					</li>
 					<li class="list-group-item">
 						<h4 class="list-group-item-heading">Email school</h4>

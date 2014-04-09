@@ -17,21 +17,9 @@ class Program extends Model {
 	 * @var array
 	 */
 	protected $fillable = array(
-		'location_id',
-		'type_id',
-		'year_id',
-		'name'
+		'name',
+		'type_id'
 	);
-
-	/**
-	 * Belongs to relation with the location model.
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-	 */
-	public function location()
-	{
-		return $this->belongsTo('SintLucas\School\Models\Location');
-	}
 
 	/**
 	 * Belongs to relation with the type model.
@@ -41,16 +29,6 @@ class Program extends Model {
 	public function type()
 	{
 		return $this->belongsTo('SintLucas\School\Models\Type');
-	}
-
-	/**
-	 * Belongs to relation with the year model.
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-	 */
-	public function year()
-	{
-		return $this->belongsTo('SintLucas\School\Models\Year');
 	}
 
 }
