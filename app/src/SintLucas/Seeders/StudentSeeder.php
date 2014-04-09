@@ -153,11 +153,11 @@ class StudentSeeder extends Seeder {
 
 		foreach($this->data as $record)
 		{
-			$user = $userRepo->create(array(
+			$user = $this->findOrCreate($userRepo, array(
 				'school_email' => $record['email']
 			));
 
-			$profile = $profileRepo->create(array(
+			$profile = $this->findOrCreate($profileRepo, array(
 				'program_id'       => $programs[$record['programKey']]->id,
 				'user_id'          => $user->id,
 				'first_name'       => $record['firstName'],
