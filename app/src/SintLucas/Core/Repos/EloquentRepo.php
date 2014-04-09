@@ -14,6 +14,13 @@ abstract class EloquentRepo {
 	protected $relations = array();
 
 	/**
+	 * Validation rules.
+	 *
+	 * @var array
+	 */
+	protected $rules = array();
+
+	/**
 	 * Create a new eloquent repository instance.
 	 *
 	 * @param \Illuminate\Database\Eloquent\Model $model
