@@ -1,24 +1,14 @@
 <?php namespace SintLucas\User\Repos;
 
-use SintLucas\User\Models\Role;
+use SintLucas\Core\Repos\EloquentRepo;
 
-class ClassRepo {
-
-	/**
-	 * Social media model instance.
-	 *
-	 * @var \SintLucas\User\Models\Role
-	 */
-	protected $model;
+class RoleRepo extends EloquentRepo {
 
 	/**
-	 * Create a new social media repository instance.
+	 * Validation rules.
 	 *
-	 * @param \SintLucas\User\Models\Role $model
+	 * @var array
 	 */
-	public function __construct(Role $model)
-	{
-		$this->model = $model;
-	}
+	protected $rules = array();
 
 }
