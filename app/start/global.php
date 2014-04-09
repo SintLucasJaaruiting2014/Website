@@ -79,3 +79,15 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+/*
+|--------------------------------------------------------------------------
+| Require The Errors File
+|--------------------------------------------------------------------------
+|
+| Here we will include the errors file where we can register all our error
+| handlers.
+|
+*/
+
+require app_path().'/errors.php';
