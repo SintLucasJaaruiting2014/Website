@@ -144,4 +144,14 @@ class ProfileService {
 		return $this->profilePropertyRepo->getBy(array('profile_id' => $profile->id), array('filters'));
 	}
 
+	/**
+	 * Get social media accounts and types for the given profile.
+	 *
+	 * @return \Illuminate\Support\Collection
+	 */
+	public function getSocialMediaWithTypesForProfile(Profile $profile)
+	{
+		return $this->socialMediaRepo->getBy(array('profile_id' => $profile->id), array('type'));
+	}
+
 }
