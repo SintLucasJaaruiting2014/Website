@@ -14,4 +14,13 @@ class Type extends Model {
 	 */
 	protected $table = 'school_types';
 
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = array(
+		'name'
+	);
+
 }

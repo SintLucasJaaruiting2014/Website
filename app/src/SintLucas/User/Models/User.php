@@ -21,6 +21,16 @@ class User extends Model implements UserInterface, RemindableInterface {
 	protected $hidden = array('password');
 
 	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = array(
+		'school_email',
+		'personal_email'
+	);
+
+	/**
 	 * Get the unique identifier for the user.
 	 *
 	 * @return mixed

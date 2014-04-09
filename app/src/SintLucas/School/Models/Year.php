@@ -14,4 +14,13 @@ class Year extends Model {
 	 */
 	protected $table = 'school_year';
 
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = array(
+		'name'
+	);
+
 }

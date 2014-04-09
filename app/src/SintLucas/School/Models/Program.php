@@ -12,6 +12,18 @@ class Program extends Model {
 	protected $table = 'school_programs';
 
 	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = array(
+		'location_id',
+		'type_id',
+		'year_id',
+		'name'
+	);
+
+	/**
 	 * Belongs to relation with the location model.
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

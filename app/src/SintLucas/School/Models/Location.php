@@ -14,4 +14,13 @@ class Location extends Model {
 	 */
 	protected $table = 'school_locations';
 
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = array(
+		'name'
+	);
+
 }
