@@ -18,9 +18,9 @@ class CreateUserTables extends Migration {
 
 			$table->increments('id');
 			$table->string('school_email')->unique();
-			$table->string('personal_email')->unique();
-			$table->string('password');
-			$table->string('reset_hash');
+			$table->string('personal_email')->nullable()->unique();
+			$table->string('password')->nullable();
+			$table->string('reset_hash')->nullable();
 			$table->timestamps();
 		});
 
