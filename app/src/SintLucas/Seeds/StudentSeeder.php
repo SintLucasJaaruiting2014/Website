@@ -1,4 +1,4 @@
-<?php namespace SintLucas\Seeders;
+<?php namespace SintLucas\Seeds;
 
 use Illuminate\Database\Seeder;
 
@@ -183,5 +183,4 @@ class StudentSeeder extends Seeder {
 
 		return $models;
 	}
-
 }
