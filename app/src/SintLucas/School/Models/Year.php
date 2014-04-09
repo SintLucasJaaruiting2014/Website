@@ -12,7 +12,7 @@ class Year extends Model {
 	 *
 	 * @var string
 	 */
-	protected $table = 'school_year';
+	protected $table = 'school_years';
 
 	/**
 	 * The attributes that are mass assignable.
