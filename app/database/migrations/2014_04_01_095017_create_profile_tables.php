@@ -71,7 +71,7 @@ class CreateProfileTables extends Migration {
 			$table->foreign('filter_id')->references('id')->on('profile_filters');
 		});
 
-		Schema::create('profile_filter_profile', function($table)
+		Schema::create('profile_profileproperty', function($table)
 		{
 			$table->engine = 'InnoDB';
 
@@ -116,7 +116,7 @@ class CreateProfileTables extends Migration {
 	public function down()
 	{
 		Schema::drop('profile_answers');
-		Schema::drop('profile_filter_profile');
+		Schema::drop('profile_profileproperty');
 		Schema::drop('profile_questions');
 		Schema::drop('profile_filteroptions');
 		Schema::drop('profile_filters');
