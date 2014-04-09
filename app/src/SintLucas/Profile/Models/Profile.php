@@ -11,4 +11,18 @@ class Profile extends Model {
 	 */
 	protected $table = 'profile_profiles';
 
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = array(
+		'program_id',
+		'user_id',
+		'first_name',
+		'last_name_prefix',
+		'last_name',
+		'quote'
+	);
+
 }
