@@ -70,14 +70,4 @@ class User extends Model implements UserInterface, RemindableInterface {
 		return $this->belongsToMany('SintLucas\User\Models\Role');
 	}
 
-	/**
-	 * Belongs to relation with the klass model.
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-	 */
-	public function klass()
-	{
-		return $this->belongsTo('SintLucas\School\Models\Klass');
-	}
-
 }
