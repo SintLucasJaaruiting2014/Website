@@ -95,6 +95,7 @@ class ProfileService {
 		$this->filterOptionRepo    = $filterOptionRepo;
 		$this->filterRepo          = $filterRepo;
 		$this->profileRepo         = $profileRepo;
+		$this->profilePropertyRepo = $profilePropertyRepo;
 		$this->questionRepo        = $questionRepo;
 		$this->socialMediaRepo     = $socialMediaRepo;
 		$this->socialMediaTypeRepo = $socialMediaTypeRepo;
@@ -108,7 +109,7 @@ class ProfileService {
 	 */
 	public function findProfileByUserId($userId)
 	{
-		return $this->profileRepo->findBy('user_id', $userId);
+		return $this->profileRepo->findBy(array('user_id' => $userId));
 	}
 
 	/**
@@ -129,7 +130,7 @@ class ProfileService {
 	 */
 	public function getAnswersForProfile(Profile $profile)
 	{
-		return $this->answerRepo->getBy('profile_id', $profile->id);
+		return $this->answerRepo->getBy(array('profile_id' => $profile->id));
 	}
 
 	/**
@@ -140,7 +141,7 @@ class ProfileService {
 	 */
 	public function getPropertiesForProfile(Profile $profile)
 	{
-		return $this->profilePropertyRepo->getBy('profile_id', $profile->id, array('filters'));
+		return $this->profilePropertyRepo->getBy(array('profile_id' => $profile->id), array('filters'));
 	}
 
 }
