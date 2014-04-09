@@ -21,7 +21,7 @@ class DataCollectorServiceProvider extends ServiceProvider {
 	{
 		$this->app['datacollector.controller'] = $this->app->share(function($app)
 		{
-			return new DataCollectorController();
+			return new DataCollectorController($app['profile.service'], $app['portfolio.service']);
 		});
 	}
 
