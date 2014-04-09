@@ -1,10 +1,9 @@
 <?php namespace SintLucas\Provider;
 
 use Illuminate\Support\ServiceProvider;
-use SintLucas\Portfolio\Repos\ItemRepo;
-use SintLucas\Portfolio\Models\Item;
+use SintLucas\DataCollector\DataCollectorController;
 
-class PortfolioServiceProvider extends ServiceProvider {
+class DataCollectorServiceProvider extends ServiceProvider {
 
 	/**
 	 * Indicates if loading of the provider is deferred.
@@ -20,14 +19,9 @@ class PortfolioServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['portfolio.repos.item'] = $this->app->share(function($app)
+		$this->app['datacollector.controller'] = $this->app->share(function($app)
 		{
-			return new ItemRepo();
-		});
-
-		$this->app['portfolio.service'] = $this->app->share(function($app)
-		{
-			return new PortfolioService($app['portfolio.repos.item']);
+			return new DataCollectorController();
 		});
 	}
 
@@ -39,8 +33,7 @@ class PortfolioServiceProvider extends ServiceProvider {
 	public function provides()
 	{
 		return array(
-			'portfolio.repos.item',
-			'portfolio.service'
+			'datacollector.controller'
 		);
 	}
 

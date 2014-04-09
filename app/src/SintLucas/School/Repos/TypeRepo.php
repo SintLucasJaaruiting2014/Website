@@ -1,22 +1,22 @@
 <?php namespace SintLucas\School\Repos;
 
-use SintLucas\School\Models\Klass;
+use SintLucas\School\Models\Year;
 
-class ClassRepo {
+class TypeRepo {
 
 	/**
 	 * Social media model instance.
 	 *
-	 * @var \SintLucas\School\Models\Klass
+	 * @var \SintLucas\School\Models\Year
 	 */
 	protected $model;
 
 	/**
 	 * Create a new social media repository instance.
 	 *
-	 * @param \SintLucas\School\Models\Klass $model
+	 * @param \SintLucas\School\Models\Year $model
 	 */
-	public function __construct(Klass $model)
+	public function __construct(Year $model)
 	{
 		$this->model = $model;
 	}

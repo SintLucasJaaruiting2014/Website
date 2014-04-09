@@ -1,20 +1,20 @@
-<?php namespace SintLucas\Portfolio\Repos;
+<?php namespace SintLucas\Media\Repos;
 
-use SintLucas\Portfolio\Models\Item;
+use SintLucas\Media\Models\Item;
 
 class ItemRepo {
 
 	/**
 	 * Social media model instance.
 	 *
-	 * @var \SintLucas\Portfolio\Models\Item
+	 * @var \SintLucas\Media\Models\Item
 	 */
 	protected $model;
 
 	/**
 	 * Create a new social media repository instance.
 	 *
-	 * @param \SintLucas\Portfolio\Models\Item $model
+	 * @param \SintLucas\Media\Models\Item $model
 	 */
 	public function __construct(Item $model)
 	{

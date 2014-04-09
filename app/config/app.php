@@ -106,6 +106,12 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+		'SintLucas\Provider\MediaServiceProvider',
+		'SintLucas\Provider\PortfolioServiceProvider',
+		'SintLucas\Provider\SchoolServiceProvider',
+		'SintLucas\Provider\SocialServiceProvider',
+		'SintLucas\Provider\UserServiceProvider',
+		'SintLucas\Provider\DataCollectorServiceProvider',
 
 	),
 
