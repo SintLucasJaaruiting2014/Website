@@ -19,7 +19,7 @@ class CoreServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		if($this->app->runningInConsole() === true)
+		if($this->app->runningInConsole())
 		{
 			$this->commands(
 				'importer.command'
