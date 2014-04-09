@@ -7,13 +7,6 @@ use SintLucas\Core\Exception\ValidationException;
 abstract class EloquentRepo {
 
 	/**
-	 * List of eager loaded relations.
-	 *
-	 * @var array
-	 */
-	protected $relations = array();
-
-	/**
 	 * Validation rules.
 	 *
 	 * @var array
@@ -37,7 +30,7 @@ abstract class EloquentRepo {
 	 */
 	public function all()
 	{
-		return $this->model->with($this->relations)->get();
+		return $this->model->get();
 	}
 
 	/**
@@ -48,7 +41,32 @@ abstract class EloquentRepo {
 	 */
 	public function find($id)
 	{
-		return $this->model->with($this->relations)->findOrFail($id);
+		return $this->model->findOrFail($id);
+	}
+
+	/**
+	 * Find a record by a specific field and eagerload the given relations.
+	 *
+	 * @param  string $field
+	 * @param  int    $id
+	 * @param  array  $relations
+	 * @return \Illuminate\Database\Eloquent\Model
+	 */
+	public function findBy($field, $value, $relations = array())
+	{
+		return $this->model->with($relations)->where($field, '=', $value)->first();
+	}
+
+	/**
+	 * Get records by a specific field and eagerload the given relations.
+	 *
+	 * @param  int   $id
+	 * @param  array $relations
+	 * @return \Illuminate\Database\Eloquent\Model
+	 */
+	public function getBy($field, $value, $relations = array())
+	{
+		return $this->model->with($relations)->where($field, '=', $value)->get();
 	}
 
 	/**
