@@ -17,13 +17,14 @@ class CreateProfileTables extends Migration {
 			$table->engine = 'InnoDB';
 
 			$table->increments('id');
+			$table->integer('program_id')->unsigned();
 			$table->integer('user_id')->unsigned();
 			$table->string('first_name');
 			$table->string('last_name');
-			$table->string('location');
 			$table->string('quote', 300);
 			$table->timestamps();
 
+			$table->foreign('program_id')->references('id')->on('school_programs');
 			$table->foreign('user_id')->references('id')->on('user_users');
 		});
 

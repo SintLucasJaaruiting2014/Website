@@ -17,14 +17,11 @@ class CreateUserTables extends Migration {
 			$table->engine = 'InnoDB';
 
 			$table->increments('id');
-			$table->integer('class_id')->unsigned();
 			$table->string('school_email')->unique();
 			$table->string('personal_email')->unique();
 			$table->string('password');
 			$table->string('reset_hash');
 			$table->timestamps();
-
-			$table->foreign('class_id')->references('id')->on('school_classes');
 		});
 
 		Schema::create('user_roles', function($table)
