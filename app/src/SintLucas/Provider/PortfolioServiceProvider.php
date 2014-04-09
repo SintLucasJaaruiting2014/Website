@@ -1,8 +1,9 @@
 <?php namespace SintLucas\Provider;
 
 use Illuminate\Support\ServiceProvider;
-use SintLucas\Portfolio\Repos\ItemRepo;
 use SintLucas\Portfolio\Models\Item;
+use SintLucas\Portfolio\PortfolioService;
+use SintLucas\Portfolio\Repos\ItemRepo;
 
 class PortfolioServiceProvider extends ServiceProvider {
 
@@ -22,7 +23,7 @@ class PortfolioServiceProvider extends ServiceProvider {
 	{
 		$this->app['portfolio.repo.item'] = $this->app->share(function($app)
 		{
-			return new ItemRepo();
+			return new ItemRepo(new Item);
 		});
 
 		$this->app['portfolio.service'] = $this->app->share(function($app)
