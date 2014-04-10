@@ -14,4 +14,10 @@ return array(
 		'seeder' => 'SintLucas\Seeds\FilterSeeder'
 	),
 
+	'questions' => array(
+		'path' => base_path('data/questions.yaml'),
+		'type' => 'yaml',
+		'seeder' => 'SintLucas\Seeds\QuestionSeeder'
+	),
+
 );
