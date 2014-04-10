@@ -14,4 +14,14 @@ class FilterOption extends Model {
 	 */
 	protected $table = 'profile_filteroptions';
 
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = array(
+		'filter_id',
+		'value'
+	);
+
 }

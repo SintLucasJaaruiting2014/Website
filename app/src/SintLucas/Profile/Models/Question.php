@@ -12,6 +12,16 @@ class Question extends Model {
 	protected $table = 'profile_questions';
 
 	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = array(
+		'type_id',
+		'label'
+	);
+
+	/**
 	 * Has many relation with the answer model.
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
