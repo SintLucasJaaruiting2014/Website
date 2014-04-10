@@ -65,6 +65,7 @@ class CreateProfileTables extends Migration {
 			$table->engine = 'InnoDB';
 
 			$table->increments('id');
+			$table->tinyInteger('multiple_choice');
 			$table->string('label');
 			$table->timestamps();
 		});
@@ -101,8 +102,11 @@ class CreateProfileTables extends Migration {
 			$table->engine = 'InnoDB';
 
 			$table->increments('id');
+			$table->integer('type_id')->unsigned();
 			$table->string('label');
 			$table->timestamps();
+
+			$table->foreign('type_id')->references('id')->on('school_types');
 		});
 
 		Schema::create('profile_answers', function($table)
