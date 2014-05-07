@@ -14,7 +14,11 @@ App::error(function(SavingErrorException $e)
 	return Redirect::back()->withInput();
 });
 
+/**
+ * @todo  replace exception messages with translation strings.
+ */
 App::error(function(ValidationException $e)
 {
-	return Redirect::back()->withInput()->withErrors($e->getMessageBag());
+	return Redirect::back()->withInput()->withErrors($e->getMessageBag())
+		->with('error', $e->getMessage());
 });

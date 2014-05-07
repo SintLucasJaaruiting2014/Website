@@ -22,9 +22,12 @@ class CreateProfileTables extends Migration {
 			$table->integer('user_id')->unsigned();
 			$table->integer('year_id')->unsigned();
 			$table->string('slug')->nullable();
+			$table->string('email')->nullable();
 			$table->string('first_name');
 			$table->string('last_name_prefix')->nullable();
 			$table->string('last_name');
+			$table->string('website')->nullable();
+			$table->string('location')->nullable();
 			$table->string('quote', 300)->nullable();
 			$table->timestamps();
 
@@ -114,10 +117,12 @@ class CreateProfileTables extends Migration {
 			$table->engine = 'InnoDB';
 
 			$table->increments('id');
+			$table->integer('question_id')->unsigned();
 			$table->integer('profile_id')->unsigned();
-			$table->string('value');
+			$table->string('value', 450);
 			$table->timestamps();
 
+			$table->foreign('question_id')->references('id')->on('profile_questions');
 			$table->foreign('profile_id')->references('id')->on('profile_profiles');
 		});
 	}

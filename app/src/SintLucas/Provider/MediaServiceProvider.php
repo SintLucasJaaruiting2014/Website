@@ -1,10 +1,11 @@
 <?php namespace SintLucas\Provider;
 
 use Illuminate\Support\ServiceProvider;
-use SintLucas\Media\MediaService;
-use SintLucas\Media\Repos\ImageRepo;
-use SintLucas\Media\Repos\MediaRepo;
-use SintLucas\Media\Repos\VideoRepo;
+use SintLucas\Domain\Media\MediaService;
+use SintLucas\Domain\Media\Models\Item;
+use SintLucas\Domain\Media\Models\Type;
+use SintLucas\Domain\Media\Repos\ItemRepo;
+use SintLucas\Domain\Media\Repos\TypeRepo;
 
 class MediaServiceProvider extends ServiceProvider {
 
@@ -22,24 +23,14 @@ class MediaServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['media.repo.image'] = $this->app->share(function($app)
+		$this->app['media.repo.item'] = $this->app->share(function($app)
 		{
-			return new ImageRepo();
-		});
-
-		$this->app['media.repo.video'] = $this->app->share(function($app)
-		{
-			return new VideoRepo();
-		});
-
-		$this->app['media.repo.media'] = $this->app->share(function($app)
-		{
-			return new MediaRepo();
+			return new ItemRepo(new Item);
 		});
 
 		$this->app['media.service'] = $this->app->share(function($app)
 		{
-			return new MediaService($app['media.repo.media'], $app['media.repo.image'], $app['media.repo.video']);
+			return new MediaService($app['media.repo.item']);
 		});
 	}
 
@@ -51,9 +42,8 @@ class MediaServiceProvider extends ServiceProvider {
 	public function provides()
 	{
 		return array(
-			'media.repo.image',
-			'media.repo.video',
-			'media.repo.media'
+			'media.repo.item',
+			'media.service'
 		);
 	}
 

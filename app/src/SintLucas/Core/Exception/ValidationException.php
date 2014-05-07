@@ -16,7 +16,7 @@ class ValidationException extends Exception implements MessageProviderInterface 
 	 * @param string                         $message
 	 * @param \Illuminate\Support\MessageBag $messages
 	 */
-	public function __construct($message, $messages)
+	public function __construct($message, $messages = array())
 	{
 		$this->messages = $messages;
 

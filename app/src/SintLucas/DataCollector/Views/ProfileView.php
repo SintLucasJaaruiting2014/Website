@@ -4,6 +4,6 @@ use SintLucas\Core\View;
 
 class ProfileView extends View {
 
-	protected $view = 'sintlucas.datacollector.profile';
+	protected $view = 'datacollector.profile';
 
 }

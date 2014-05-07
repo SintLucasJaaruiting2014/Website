@@ -4,6 +4,6 @@ use SintLucas\Core\View;
 
 class QuestionView extends View {
 
-	protected $view = 'sintlucas.datacollector.questions';
+	protected $view = 'datacollector.questions';
 
 }

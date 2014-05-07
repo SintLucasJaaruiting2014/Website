@@ -13,6 +13,19 @@ class CoreServiceProvider extends ServiceProvider {
 	protected $defer = false;
 
 	/**
+	 * Bootstrap the application events.
+	 *
+	 * @return void
+	 */
+	public function boot()
+	{
+		$this->app['html']->macro('angular', function($str)
+		{
+			return "{{ $str }}";
+		});
+	}
+
+	/**
 	 * Register the service provider.
 	 *
 	 * @return void

@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost',
+	'url' => 'jaaruiting.sintlucas.dev',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -52,7 +52,9 @@ return array(
 	|
 	*/
 
-	'locale' => 'en',
+	'locale' => 'nl',
+
+	'fallback_locale' => 'en',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -106,15 +108,21 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-		'SintLucas\Provider\CoreServiceProvider',
 		'SintLucas\Provider\DataCollectorServiceProvider',
 		'SintLucas\Provider\ImporterServiceProvider',
+		'SintLucas\Provider\FrontendServiceProvider',
 		'SintLucas\Provider\MediaServiceProvider',
 		'SintLucas\Provider\ParserServiceProvider',
 		'SintLucas\Provider\PortfolioServiceProvider',
 		'SintLucas\Provider\ProfileServiceProvider',
 		'SintLucas\Provider\SchoolServiceProvider',
 		'SintLucas\Provider\UserServiceProvider',
+		'SintLucas\Provider\CoreServiceProvider',
+		'SintLucas\Provider\AuthServiceProvider',
+		'SintLucas\Provider\BackendServiceProvider',
+		'SintLucas\Provider\ApiServiceProvider',
+		'Intervention\Image\ImageServiceProvider',
+		'Bugsnag\BugsnagLaravel\BugsnagLaravelServiceProvider'
 
 	),
 
@@ -181,6 +189,7 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
+		'Image'           => 'Intervention\Image\Facades\Image'
 
 	),
 

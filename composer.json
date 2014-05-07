@@ -5,7 +5,11 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.1.*",
-		"symfony/yaml": "2.4.*"
+		"symfony/yaml": "2.4.*",
+		"bugsnag/bugsnag-laravel": "1.0.*",
+		"league/fractal": "0.7.*@dev",
+		"intervention/image": "1.*",
+		"intervention/imagecache": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

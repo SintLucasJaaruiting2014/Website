@@ -1,0 +1,1 @@
+<img src="{{ route('imagecache', array('dcthumb', $item->media->filename)) }}" class="img-responsive img-rounded" ng-click="setPreview('{{ route('imagecache', array('large', $item->media->filename)) }}')">

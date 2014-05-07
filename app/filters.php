@@ -78,3 +78,16 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+/**
+ * Custom filters
+ *
+ * @todo  refactor to custom class
+ */
+Route::filter('role', function($route, $request, $role)
+{
+	if( ! Auth::user()->hasRole($role))
+	{
+		return Redirect::to('/');
+	}
+});

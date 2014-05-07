@@ -1,4 +1,4 @@
-<?php namespace SintLucas\Core;
+<?php namespace SintLucas\Core\Interfaces;
 
 interface CrudRepoInterface {
 
@@ -7,7 +7,14 @@ interface CrudRepoInterface {
 	 *
 	 * @return \Illuminate\Support\Collection
 	 */
-	public function all();
+	public function paginate($perPage = 30, $sort = array());
+
+	/**
+	 * Get all records.
+	 *
+	 * @return \Illuminate\Support\Collection
+	 */
+	public function all($sort = array());
 
 	/**
 	 * Find a record.
@@ -53,12 +60,29 @@ interface CrudRepoInterface {
 	public function update($id, $data = array());
 
 	/**
+	 * Update a record.
+	 *
+	 * @param  int    $whereData
+	 * @param  array  $data
+	 * @return \Illuminate\Database\Eloquent\Model
+	 */
+	public function updateBy($whereData = array(), $data = array());
+
+	/**
 	 * Delete a record.
 	 *
 	 * @param  int $id
 	 * @return bool
 	 */
 	public function delete($id);
+
+	/**
+	 * Delete all records that match the given data.
+	 *
+	 * @param  array $data
+	 * @return bool
+	 */
+	public function deleteBy($data = array());
 
 	/**
 	 * Validate a record.

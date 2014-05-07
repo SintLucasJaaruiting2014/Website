@@ -21,10 +21,14 @@ class DataCollectorServiceProvider extends ServiceProvider {
 	{
 		$this->app['datacollector.controller'] = $this->app->share(function($app)
 		{
+			$user            = $app['auth']->user();
+
 			return new DataCollectorController(
-				$app['profile.service'],
+				$app['media.service'],
 				$app['portfolio.service'],
-				$app['school.service']
+				$app['profile.service'],
+				$app['school.service'],
+				$user
 			);
 		});
 	}

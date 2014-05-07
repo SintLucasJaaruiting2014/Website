@@ -17,10 +17,10 @@ class CreateUserTables extends Migration {
 			$table->engine = 'InnoDB';
 
 			$table->increments('id');
-			$table->string('school_email')->unique();
-			$table->string('personal_email')->nullable()->unique();
+			$table->integer('student_id')->unique();
+			$table->string('email')->unique();
 			$table->string('password')->nullable();
-			$table->string('reset_hash')->nullable();
+			$table->string('remember_token')->nullable();
 			$table->timestamps();
 		});
 

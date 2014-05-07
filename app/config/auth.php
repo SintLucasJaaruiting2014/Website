@@ -28,7 +28,7 @@ return array(
 	|
 	*/
 
-	'model' => 'User',
+	'model' => 'SintLucas\Domain\User\Models\User',
 
 	/*
 	|--------------------------------------------------------------------------

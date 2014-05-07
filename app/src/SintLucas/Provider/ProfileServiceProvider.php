@@ -1,23 +1,23 @@
 <?php namespace SintLucas\Provider;
 
 use Illuminate\Support\ServiceProvider;
-use SintLucas\Profile\Models\Answer;
-use SintLucas\Profile\Models\FilterOption;
-use SintLucas\Profile\Models\Filter;
-use SintLucas\Profile\Models\Profile;
-use SintLucas\Profile\Models\ProfileProperty;
-use SintLucas\Profile\Models\Question;
-use SintLucas\Profile\Models\SocialMedia;
-use SintLucas\Profile\Models\SocialMediaType;
-use SintLucas\Profile\Repos\AnswerRepo;
-use SintLucas\Profile\Repos\FilterOptionRepo;
-use SintLucas\Profile\Repos\FilterRepo;
-use SintLucas\Profile\Repos\ProfileRepo;
-use SintLucas\Profile\Repos\ProfilePropertyRepo;
-use SintLucas\Profile\Repos\QuestionRepo;
-use SintLucas\Profile\Repos\SocialMediaRepo;
-use SintLucas\Profile\Repos\SocialMediaTypeRepo;
-use SintLucas\Profile\ProfileService;
+use SintLucas\Domain\Profile\Models\Answer;
+use SintLucas\Domain\Profile\Models\FilterOption;
+use SintLucas\Domain\Profile\Models\Filter;
+use SintLucas\Domain\Profile\Models\Profile;
+use SintLucas\Domain\Profile\Models\ProfileProperty;
+use SintLucas\Domain\Profile\Models\Question;
+use SintLucas\Domain\Profile\Models\SocialMedia;
+use SintLucas\Domain\Profile\Models\SocialMediaType;
+use SintLucas\Domain\Profile\Repos\AnswerRepo;
+use SintLucas\Domain\Profile\Repos\FilterOptionRepo;
+use SintLucas\Domain\Profile\Repos\FilterRepo;
+use SintLucas\Domain\Profile\Repos\ProfileRepo;
+use SintLucas\Domain\Profile\Repos\ProfilePropertyRepo;
+use SintLucas\Domain\Profile\Repos\QuestionRepo;
+use SintLucas\Domain\Profile\Repos\SocialMediaRepo;
+use SintLucas\Domain\Profile\Repos\SocialMediaTypeRepo;
+use SintLucas\Domain\Profile\ProfileService;
 
 class ProfileServiceProvider extends ServiceProvider {
 

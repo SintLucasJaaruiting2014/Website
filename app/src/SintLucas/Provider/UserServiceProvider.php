@@ -1,10 +1,10 @@
 <?php namespace SintLucas\Provider;
 
 use Illuminate\Support\ServiceProvider;
-use SintLucas\User\Models\Role;
-use SintLucas\User\Models\User;
-use SintLucas\User\Repos\RoleRepo;
-use SintLucas\User\Repos\UserRepo;
+use SintLucas\Domain\User\Models\Role;
+use SintLucas\Domain\User\Models\User;
+use SintLucas\Domain\User\Repos\RoleRepo;
+use SintLucas\Domain\User\Repos\UserRepo;
 
 class UserServiceProvider extends ServiceProvider {
 

@@ -12,16 +12,6 @@ class CreateMediaTables extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('media_types', function($table)
-		{
-			$table->engine = 'InnoDB';
-
-			$table->increments('id');
-			$table->string('name');
-			$table->string('slug');
-			$table->timestamps();
-		});
-
 		Schema::create('media_items', function($table)
 		{
 			$table->engine = 'InnoDB';
@@ -32,8 +22,6 @@ class CreateMediaTables extends Migration {
 			$table->integer('type_id')->unsigned();
 			$table->string('value');
 			$table->timestamps();
-
-			$table->foreign('type_id')->references('id')->on('media_types');
 		});
 	}
 

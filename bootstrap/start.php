@@ -26,7 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('your-machine-name'),
+	'local' => array('*.local'),
 
 ));
 
@@ -69,5 +69,7 @@ require $framework.'/Illuminate/Foundation/start.php';
 | from the actual running of the application and sending responses.
 |
 */
+
+$app->forgetMiddleware('Illuminate\Http\FrameGuard');
 
 return $app;

@@ -1,0 +1,49 @@
+<div class="row">
+	<div class="col-sm-4">
+		<label for="search">Zoek</label>
+		<input type="search" id="search" class="form-control" ng-model="search">
+	</div>
+	<div class="col-sm-4">
+		<label for="school_type">School type</label>
+		<select name="program.data.type_id" id="school_type" class="form-control"
+			ng-model="filters.program.data.type_id">
+			<option value="">Alle</option>
+			<option value="1">MBO</option>
+			<option value="2">VMBO</option>
+		</select>
+	</div>
+	<div class="col-sm-4">
+		<label for="status">Status</label>
+		<select name="approved" id="status" class="form-control"
+			ng-model="filters.approved">
+			<option value="">Niet gecontroleerd</option>
+			<option value="1">Niet goedgekeurd</option>
+			<option value="2">Goedgekeurd</option>
+		</select>
+	</div>
+</div>
+<div infinite-scroll="loadItems()" threshold="300" can-load="canLoad" style="overflow:scroll; height: 200px">
+	<table class="table table-hover">
+
+		<thead>
+			<tr>
+				<th>Stamnummer</th>
+				<th>Voornaam</th>
+				<th></th>
+				<th>Achternaam</th>
+				<th>Email</th>
+			</tr>
+		</thead>
+		<tbody ng-repeat="(page, items) in pages">
+			<tr style="cursor:pointer" ng-repeat="item in items | filter:filters" ng-click="navigate(item)" ng-class="{success: item.approved}">
+				<td>{{ item.user.data.student_id }}</td>
+				<td>{{ item.first_name }}</td>
+				<td>{{ item.last_name_prefix }}</td>
+				<td>{{ item.last_name }}</td>
+				<td>{{ item.user.data.email }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<hr>
+<div ui-view></div>

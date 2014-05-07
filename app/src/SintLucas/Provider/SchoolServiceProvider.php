@@ -1,15 +1,15 @@
 <?php namespace SintLucas\Provider;
 
 use Illuminate\Support\ServiceProvider;
-use SintLucas\School\Models\Location;
-use SintLucas\School\Models\Program;
-use SintLucas\School\Models\Year;
-use SintLucas\School\Models\Type;
-use SintLucas\School\Repos\LocationRepo;
-use SintLucas\School\Repos\ProgramRepo;
-use SintLucas\School\Repos\YearRepo;
-use SintLucas\School\Repos\TypeRepo;
-use SintLucas\School\SchoolService;
+use SintLucas\Domain\School\Models\Location;
+use SintLucas\Domain\School\Models\Program;
+use SintLucas\Domain\School\Models\Year;
+use SintLucas\Domain\School\Models\Type;
+use SintLucas\Domain\School\Repos\LocationRepo;
+use SintLucas\Domain\School\Repos\ProgramRepo;
+use SintLucas\Domain\School\Repos\YearRepo;
+use SintLucas\Domain\School\Repos\TypeRepo;
+use SintLucas\Domain\School\SchoolService;
 
 class SchoolServiceProvider extends ServiceProvider {
 

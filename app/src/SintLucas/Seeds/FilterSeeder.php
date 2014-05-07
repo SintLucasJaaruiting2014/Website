@@ -21,14 +21,14 @@ class FilterSeeder extends Seeder {
 	/**
 	 * Filter repo instance.
 	 *
-	 * @var \SintLucas\Profile\Repos\FilterRepo
+	 * @var \SintLucas\Domain\Profile\Repos\FilterRepo
 	 */
 	protected $filterRepo;
 
 	/**
 	 * Option repo instance.
 	 *
-	 * @var \SintLucas\Profile\Repos\OptionRepo
+	 * @var \SintLucas\Domain\Profile\Repos\OptionRepo
 	 */
 	protected $optionRepo;
 
@@ -67,10 +67,11 @@ class FilterSeeder extends Seeder {
 	 */
 	public function createFilter($filter)
 	{
-		$model = $this->filterRepo->create(array(
+		$data = array(
 			'label' => $filter['label'],
 			'multiple_choice' => $filter['multiple_choice']
-		));
+		);
+		$model = $this->findOrCreate($this->filterRepo, $data);
 
 		$this->createOptions($model->id, $filter['options']);
 	}
@@ -86,10 +87,27 @@ class FilterSeeder extends Seeder {
 	{
 		foreach($options as $option)
 		{
-			$this->optionRepo->create(array(
+			$this->findOrCreate($this->optionRepo, array(
 				'filter_id' => $filterId,
 				'value' => $option
 			));
 		}
+	}
+
+	/**
+	 * Find or create a model.
+	 *
+	 * @param  \SintLucas\Core\Interfaces\CrudRepoInterface $repo
+	 * @param  string                                       $data
+	 * @return \Illuminate\Database\Eloquent\Model
+	 */
+	protected function findOrCreate($repo, $data)
+	{
+		if($model = $repo->findBy($data))
+		{
+			return $model;
+		}
+
+		return $repo->create($data);
 	}
 }

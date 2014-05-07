@@ -2,9 +2,10 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
+use SintLucas\Core\Interfaces\CrudRepoInterface;
 use SintLucas\Core\Exception\ValidationException;
 
-abstract class EloquentRepo {
+abstract class EloquentRepo implements CrudRepoInterface {
 
 	/**
 	 * Validation rules.
@@ -12,6 +13,13 @@ abstract class EloquentRepo {
 	 * @var array
 	 */
 	protected $rules = array();
+
+	/**
+	 * Search columns.
+	 *
+	 * @var array
+	 */
+	protected $search = array();
 
 	/**
 	 * Create a new eloquent repository instance.
@@ -28,9 +36,33 @@ abstract class EloquentRepo {
 	 *
 	 * @return \Illuminate\Support\Collection
 	 */
-	public function all()
+	public function paginate($perPage = 30, $sort = array(), $search = null)
 	{
-		return $this->model->get();
+		$query = $this->allQuery($sort, $search);
+
+		return $query->paginate($perPage);
+	}
+
+	protected function allQuery($sort, $search)
+	{
+		$query = $this->model->newQuery();
+
+		$this->applySort($query, $sort);
+		$this->applySearch($query, $search);
+
+		return $query;
+	}
+
+	/**
+	 * Get all records.
+	 *
+	 * @return \Illuminate\Support\Collection
+	 */
+	public function all($sort = array(), $search = null)
+	{
+		$query = $this->allQuery($sort, $search);
+
+		return $query->get();
 	}
 
 	/**
@@ -79,7 +111,7 @@ abstract class EloquentRepo {
 	/**
 	 * Create a new record.
 	 *
-	 * @param  array  $data
+	 * @param  array $data
 	 * @return \Illuminate\Database\Eloquent\Model
 	 */
 	public function create($data = array())
@@ -99,16 +131,15 @@ abstract class EloquentRepo {
 	/**
 	 * Update a record.
 	 *
-	 * @param  int    $id
+	 * @param  \Illuminate\Database\Eloquent\Model $model
 	 * @param  array  $data
 	 * @return \Illuminate\Database\Eloquent\Model
 	 */
-	public function update($id, $data = array())
+	public function update($model, $data = array())
 	{
-		$this->validate($data);
-
-		$model = $this->find($id);
 		$model->fill($data);
+
+		$this->validate($model->getAttributes());
 
 		if($model->save())
 		{
@@ -116,6 +147,24 @@ abstract class EloquentRepo {
 		}
 
 		throw new SavingErrorException("There was an error updating the model.");
+	}
+
+	/**
+	 * Update records which match the where data.
+	 *
+	 * @param  int    $whereData
+	 * @param  array  $data
+	 * @return \Illuminate\Database\Eloquent\Model
+	 */
+	public function updateBy($whereData = array(), $data = array())
+	{
+		$query = $this->model->newQuery();
+		foreach($whereData as $key => $value)
+		{
+			$query->where($key, '=', $value);
+		}
+
+		return $query->update($data);
 	}
 
 	/**
@@ -129,6 +178,24 @@ abstract class EloquentRepo {
 		$model = $this->find($id);
 
 		return $model->delete();
+	}
+
+	/**
+	 * Delete all records that match the given data.
+	 *
+	 * @param  array $data
+	 * @return bool
+	 */
+	public function deleteBy($data = array())
+	{
+		$query = $this->model->newQuery();
+
+		foreach($data as $key => $value)
+		{
+			$query->where($key, $value);
+		}
+
+		return $query->delete();
 	}
 
 	/**
@@ -156,11 +223,45 @@ abstract class EloquentRepo {
 	 * @param  array                                 $data
 	 * @return void
 	 */
-	protected function applyWheres(&$query, $data)
+	protected function applyWheres($query, $data)
 	{
 		foreach($data as $key => $value)
 		{
 			$query->where($key, '=', $value);
+		}
+	}
+
+	/**
+	 * Apply sort columns.
+	 *
+	 * @param  \Illuminate\Database\Eloquent\Builder $query
+	 * @param  array                                 $sort
+	 * @return void
+	 */
+	protected function applySort($query, $sort)
+	{
+		foreach($sort as $column => $directtion)
+		{
+			$query->orderBy($column, $directtion);
+		}
+	}
+
+	/**
+	 * Apply sort columns.
+	 *
+	 * @param  \Illuminate\Database\Eloquent\Builder $query
+	 * @param  string                                $search
+	 * @return void
+	 */
+	protected function applySearch($query, $search)
+	{
+		$search = trim($search);
+		if( ! empty($search))
+		{
+			foreach($this->search as $column)
+			{
+				$query->orWhere($column, 'like', "%$search%");
+			}
 		}
 	}
 

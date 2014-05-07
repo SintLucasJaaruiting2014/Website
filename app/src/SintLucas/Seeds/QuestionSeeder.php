@@ -21,7 +21,7 @@ class QuestionSeeder extends Seeder {
 	/**
 	 * Question repo instance.
 	 *
-	 * @var \SintLucas\Profile\Repos\QuestionRepo
+	 * @var \SintLucas\Domain\Profile\Repos\QuestionRepo
 	 */
 	protected $questionRepo;
 
@@ -43,7 +43,7 @@ class QuestionSeeder extends Seeder {
 		$this->data = $data;
 
 		$this->questionRepo = $app['profile.repo.question'];
-		$this->types        = $app['school.repo.type']->all();
+		$this->typeRepo     = $app['school.repo.type'];
 	}
 
 	/**
@@ -69,8 +69,9 @@ class QuestionSeeder extends Seeder {
 	{
 		foreach($question['types'] as $type)
 		{
-			$model = $this->questionRepo->create(array(
-				'type_id' => $this->getTypeIdByName($type),
+			$type = $this->findOrCreateType($type);
+			$model = $this->findOrCreate($this->questionRepo, array(
+				'type_id' => $type->id,
 				'label' => $question['label']
 			));
 		}
@@ -82,13 +83,37 @@ class QuestionSeeder extends Seeder {
 	 * @param  string $name
 	 * @return int
 	 */
-	public function getTypeIdByName($name)
+	public function findOrCreateType($name)
 	{
+		if( ! $this->types)
+		{
+			$this->types = $this->typeRepo->all();
+		}
+
 		$model = $this->types->first(function($key, $value) use($name)
 		{
 			return $value->name == $name;
 		});
 
-		return $model ? $model->id : 0;
+		return $model ?: $this->findOrCreate($this->typeRepo, array(
+			'name' => $name
+		));
+	}
+
+	/**
+	 * Find or create a model.
+	 *
+	 * @param  \SintLucas\Core\Interfaces\CrudRepoInterface $repo
+	 * @param  string                                       $data
+	 * @return \Illuminate\Database\Eloquent\Model
+	 */
+	protected function findOrCreate($repo, $data)
+	{
+		if($model = $repo->findBy($data))
+		{
+			return $model;
+		}
+
+		return $repo->create($data);
 	}
 }

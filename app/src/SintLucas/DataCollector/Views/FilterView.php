@@ -4,6 +4,6 @@ use SintLucas\Core\View;
 
 class FilterView extends View {
 
-	protected $view = 'sintlucas.datacollector.filters';
+	protected $view = 'datacollector.filters';
 
 }
