@@ -18,6 +18,9 @@
 		],
 		"psr-0": {
 			"": "app/src/"
+		},
+		"psr-4": {
+			"SintLucas\\": "src/"
 		}
 	},
 	"scripts": {
