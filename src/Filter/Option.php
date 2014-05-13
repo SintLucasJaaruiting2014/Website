@@ -1,8 +1,10 @@
 <?php namespace SintLucas\Filter;
 
+use SintLucas\Core\Model;
+
 class Option extends Model {
 
-	protected $table = 'filteroptions';
+	protected $table = 'filter_options';
 
 	public function filter()
 	{

@@ -2,14 +2,16 @@
 
 class Role {
 
-	const ROLE_STUDENT = 0;
-	const ROLE_CREW    = 1;
-	const ROLE_GOD     = 10;
+	const OLD_STUDENT = 0;
+	const STUDENT     = 1;
+	const INSPECTOR   = 2;
+	const ADMIN       = 10;
 
 	public static $roles = array(
-		self::ROLE_STUDENT => 'Student',
-		self::ROLE_CREW    => 'Jaaruiting team',
-		self::ROLE_GOD     => 'God'
+		self::OLD_STUDENT => 'Oud student',
+		self::STUDENT     => 'Student',
+		self::INSPECTOR   => 'Nakijker',
+		self::ADMIN       => 'Admin'
 	);
 
 }

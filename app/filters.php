@@ -13,7 +13,7 @@
 
 App::before(function($request)
 {
-	//
+	SintLucas\Profile\SocialMedia\Type::set(Config::get('socialmedia'));
 });
 
 

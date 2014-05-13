@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'main',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -46,16 +46,10 @@ return array(
 
 	'connections' => array(
 
-		'sqlite' => array(
-			'driver'   => 'sqlite',
-			'database' => __DIR__.'/../database/production.sqlite',
-			'prefix'   => '',
-		),
-
-		'mysql' => array(
+		'main' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'slju_live',
+			'database'  => 'slju',
 			'username'  => 'root',
 			'password'  => '',
 			'charset'   => 'utf8',
@@ -63,25 +57,16 @@ return array(
 			'prefix'    => '',
 		),
 
-		'pgsql' => array(
-			'driver'   => 'pgsql',
-			'host'     => 'localhost',
-			'database' => 'database',
-			'username' => 'root',
-			'password' => '',
-			'charset'  => 'utf8',
-			'prefix'   => '',
-			'schema'   => 'public',
-		),
-
-		'sqlsrv' => array(
-			'driver'   => 'sqlsrv',
-			'host'     => 'localhost',
-			'database' => 'database',
-			'username' => 'root',
-			'password' => '',
-			'prefix'   => '',
-		),
+		'old' => array(
+			'driver'    => 'mysql',
+			'host'      => 'localhost',
+			'database'  => 'slju_2',
+			'username'  => 'root',
+			'password'  => '',
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => '',
+		)
 
 	),
 
