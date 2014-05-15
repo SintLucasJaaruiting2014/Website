@@ -61,8 +61,21 @@
 			<h2>Vragen</h2>
 			<ul class="list-group">
 				<li class="list-group-item" ng-repeat="answer in item.answers.data">
+					<button class="btn btn-xs btn-primary pull-right" ng-click="toggleEditing(answer)">
+						{{ isEditing(answer) ? 'Cancel' : 'Edit' }}
+					</button>
+					<button class="btn btn-xs btn-danger pull-right" ng-click="updateAnswer(answer)"
+						ng-show="isEditing(answer)">
+						Save
+					</button>
 					<h4 class="list-group-item-heading">{{ answer.question }}</h4>
-					<p class="list-group-item-text">{{ answer.value }}</p>
+					<p class="list-group-item-text">
+						<div ng-hide="isEditing(answer)">
+							{{ answer.value }}
+						</div>
+						<textarea ng-show="isEditing(answer)" class="form-control" rows="3"
+							ng-model="answer.value"></textarea>
+					</p>
 				</li>
 			</ul>
 			<h2>Filters</h2>

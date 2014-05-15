@@ -12,3 +12,10 @@ app.factory('ProfileRepository', ['Repository', function(Repository) {
 
 	});
 }]);
+
+app.factory('ProfileAnswerRepository', ['Repository', function(Repository) {
+
+	return Repository('profile/answer', {
+
+	});
+}]);

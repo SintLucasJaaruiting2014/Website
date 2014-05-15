@@ -1,9 +1,9 @@
 <div class="row">
-	<div class="col-sm-4">
+	<div class="col-sm-3">
 		<label for="search">Zoek</label>
 		<input type="search" id="search" class="form-control" ng-model="search">
 	</div>
-	<div class="col-sm-4">
+	<div class="col-sm-3">
 		<label for="school_type">School type</label>
 		<select name="program.data.type_id" id="school_type" class="form-control"
 			ng-model="filters.program.data.type_id">
@@ -12,13 +12,22 @@
 			<option value="2">VMBO</option>
 		</select>
 	</div>
-	<div class="col-sm-4">
+	<div class="col-sm-3">
+		<label for="location">Locatie</label>
+		<select name="school_location" id="location" class="form-control"
+			ng-model="filters.school_location.data.id">
+			<option value="">Alle</option>
+			<option value="1">Boxtel</option>
+			<option value="2">Eindhoven</option>
+		</select>
+	</div>
+	<div class="col-sm-3">
 		<label for="status">Status</label>
 		<select name="approved" id="status" class="form-control"
 			ng-model="filters.approved">
-			<option value="">Niet gecontroleerd</option>
-			<option value="1">Niet goedgekeurd</option>
-			<option value="2">Goedgekeurd</option>
+			<option value="">Alle</option>
+			<option value="false">Niet goedgekeurd</option>
+			<option value="true">Goedgekeurd</option>
 		</select>
 	</div>
 </div>
