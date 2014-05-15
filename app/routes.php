@@ -1,5 +1,9 @@
 <?php
 
+Route::get('/', function()
+{
+	return View::make('frontend.index');
+});
 
 Route::group(array('prefix' => 'api'), function()
 {
