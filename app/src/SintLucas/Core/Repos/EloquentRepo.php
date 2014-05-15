@@ -198,6 +198,11 @@ abstract class EloquentRepo implements CrudRepoInterface {
 		return $query->delete();
 	}
 
+	public function getRules($data)
+	{
+		return $this->rules;
+	}
+
 	/**
 	 * Validate a record.
 	 *
@@ -206,7 +211,7 @@ abstract class EloquentRepo implements CrudRepoInterface {
 	 */
 	public function validate($data)
 	{
-		$validation = Validator::make($data, $this->rules);
+		$validation = Validator::make($data, $this->getRules($data));
 
 		if($validation->fails())
 		{
