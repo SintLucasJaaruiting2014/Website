@@ -162,7 +162,8 @@ class DataCollectorController extends Controller {
 			'profile' => $this->profile,
 			'socialMediaAccounts' => $this->profileService->getSocialMediaAccountsForProfile($this->profile)->toArray(),
 			'socialMediaMax' => Config::get('profile.social_media.max'),
-			'socialMediaTypes' => $this->profileService->getSocialMediaTypes()
+			'socialMediaTypes' => $this->profileService->getSocialMediaTypes(),
+			'maxQuote' => $this->profile->program->type->name == 'mbo' ? 75 : 175
 		);
 
 		return new ProfileView($data);
@@ -176,8 +177,14 @@ class DataCollectorController extends Controller {
 	public function handleProfile()
 	{
 		$profile = $this->profileService->findProfileByUserId($this->user->id);
+		$only = array('email', 'location', 'website');
 
-		$profileData = Input::only(array('email', 'location', 'website', 'quote'));
+		if($profile->program->type->name == 'vmbo')
+		{
+			$only[] = 'quote';
+		}
+
+		$profileData = Input::only($only);
 		$socialMediaData = Input::get('social_media');
 
 		$this->profileService->updateProfile($profile, $profileData);

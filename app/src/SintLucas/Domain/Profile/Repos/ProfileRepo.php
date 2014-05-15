@@ -12,7 +12,7 @@ class ProfileRepo extends EloquentRepo {
 	protected $rules = array(
 		'email' => 'email',
 		'website' => 'url',
-		'quote' => 'max:75'
+		'quote' => 'max:%d'
 	);
 
 	/**
@@ -27,6 +27,23 @@ class ProfileRepo extends EloquentRepo {
 		'user_users.email',
 		'user_users.student_id'
 	);
+
+	public function getRules($data)
+	{
+		$rules = $this->rules;
+		if($data['program_id'] == 27)
+		{
+			$max = 175;
+		}
+		else
+		{
+			$max = 75;
+		}
+
+		$rules['quote'] = sprintf($rules['quote'], $max);
+
+		return $rules;
+	}
 
 	protected function allQuery($sort, $search)
 	{

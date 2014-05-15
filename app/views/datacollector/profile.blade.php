@@ -19,7 +19,9 @@
 		</div>
 	</div>
 	@include('datacollector.partials.formgroup', array('type' => 'text', 'name' => 'website', 'label' => 'Website'))
-	@include('datacollector.partials.formgroup', array('type' => 'textarea', 'name' => 'quote', 'label' => 'Welke quote inspireerd/beschrijft jou het meest? (max 75 karakters)', 'rows' => 2, 'maxlength' => 75))
+	@if($profile->program->type->name == 'vmbo')
+	@include('datacollector.partials.formgroup', array('type' => 'textarea', 'name' => 'quote', 'label' => 'Welke quote inspireerd/beschrijft jou het meest? (max '.$maxQuote.' karakters)', 'rows' => 2, 'maxlength' => $maxQuote))
+	@endif
 	<hr>
 	<div class="form-group">
 		<label class="control-label">Social Media</label>
