@@ -188,7 +188,7 @@ class DataCollectorController extends Controller {
 
 	public function showCreatePortfolioItem()
 	{
-		$types = $this->portfolioService->getPortfolioTypes();
+		$types = $this->portfolioService->getActivePortfolioTypes();
 
 		$data = array(
 			'type'            => 'create',

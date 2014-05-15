@@ -93,6 +93,13 @@ class PortfolioService {
 		return $this->typeRepo->all();
 	}
 
+	public function getActivePortfolioTypes()
+	{
+		return $this->typeRepo->getBy(array(
+			'active' => 1
+		));
+	}
+
 	/**
 	 * Create portfolio items for the given profile
 	 * @param  [type] $profile [description]

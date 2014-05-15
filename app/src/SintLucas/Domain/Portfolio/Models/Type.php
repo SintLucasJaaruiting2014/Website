@@ -21,4 +21,9 @@ class Type extends Model {
 		return $this->hasMany('SintLucas\Domain\Portfolio\Models\Item');
 	}
 
+	public function getActiveAttribute($active)
+	{
+		return (bool) $active;
+	}
+
 }
