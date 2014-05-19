@@ -14,7 +14,9 @@
 		</div>
 		<h1>Jaaruiting data inname</h1>
 		<p>Op deze website kun je alle data ingeven voor het jaaruiting. Ook hebben we een aantal vragen en filters die jullie mogen invullen.</p>
-		<p>Wij verzoeken je om dit formulier voor 9 mei in te vullen.</p>
+		<p><strong>Let op!!</strong> Lever ook iets in onder het tabje 'Boekje', dit is namelijk bedoeld voor het jaarboek. Indien je hier niets inleverd
+		zal je quote worden gebruikt.</p>
+		<p>Je hebt nog tot zaterdag 17 mei 22:00u de tijd hiervoor.</p>
 	</div>
 
 	<div ng-controller="IndexCtrl">
@@ -57,9 +59,15 @@
 							<p class="list-group-item-text">{{ $profile->location or 'Je hebt nog geen locatie opgegeven.' }}</p>
 						</li>
 						<li class="list-group-item">
-							<h4 class="list-group-item-heading">Welke quote inspireerd/beschrijft jou het meest?</h4>
+							<h4 class="list-group-item-heading">Welke quote inspireert/beschrijft jou het meest?</h4>
 							<p class="list-group-item-text">{{ $profile->quote or 'Je hebt nog geen quote opgegeven.' }}</p>
 						</li>
+						@if($program->type->name == 'vmbo')
+						<li class="list-group-item">
+							<h4 class="list-group-item-heading">Vervolgopleiding</h4>
+							<p class="list-group-item-text">{{ $profile->next_program or 'Je hebt nog geen vervolgopleiding opgegeven.' }}</p>
+						</li>
+						@endif
 						<li class="list-group-item">
 							<h4 class="list-group-item-heading">Social Media</h4>
 							<p class="list-group-item-text">

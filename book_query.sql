@@ -1,8 +1,9 @@
 select
 	trim(concat_ws(' ', profile.first_name, trim(concat_ws(' ', profile.last_name_prefix, profile.last_name)))) as naam,
 	program.name as opleiding,
-	concat('sint', lower(profile.first_name)) as sint,
-	concat(media.id, '.', media.value) as werk,
+	lower(profile.first_name) as sint,
+	concat('Macintosh HD:Users:RobertvandenBroek:JAARBOEK_MBO_V1:ehv:werk:', media.id, '.', media.value) as werk,
+	concat('Macintosh HD:Users:RobertvandenBroek:JAARBOEK_MBO_V1:ehv:foto:', user.student_id, '.jpg') as foto,
 	profile.quote as quote,
 	user.student_id as stamnummer
 from

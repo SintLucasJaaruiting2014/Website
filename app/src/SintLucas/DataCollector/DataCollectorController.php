@@ -109,7 +109,7 @@ class DataCollectorController extends Controller {
 	{
 		$data = Input::get('question');
 
-		$profile = $this->profileService->findProfileByUserId($this->user->id);
+		$profile = $this->profile;
 
 		$this->profileService->syncAnswers($profile, $data);
 
@@ -138,7 +138,7 @@ class DataCollectorController extends Controller {
 	 */
 	public function handleFilters()
 	{
-		$profile = $this->profileService->findProfileByUserId($this->user->id);
+		$profile = $this->profile;
 
 		$data = Input::get('filteroption');
 		foreach($data as &$value)
@@ -176,15 +176,22 @@ class DataCollectorController extends Controller {
 	 */
 	public function handleProfile()
 	{
-		$profile = $this->profileService->findProfileByUserId($this->user->id);
-		$only = array('email', 'location', 'website');
+		$profile = $this->profile;
+		$data = Input::only(array('email', 'location', 'website'));
 
 		if($profile->program->type->name == 'vmbo')
 		{
-			$only[] = 'quote';
+			if(Input::has('quote'))
+			{
+				$data['quote'] = Input::get('quote');
+			}
+			if(Input::has('next_program'))
+			{
+				$data['next_program'] = Input::get('next_program');
+			}
 		}
 
-		$profileData = Input::only($only);
+		$profileData = $data;
 		$socialMediaData = Input::get('social_media');
 
 		$this->profileService->updateProfile($profile, $profileData);
@@ -196,6 +203,14 @@ class DataCollectorController extends Controller {
 	public function showCreatePortfolioItem()
 	{
 		$types = $this->portfolioService->getActivePortfolioTypes();
+
+		if($this->profile->program->type->name == 'mbo')
+		{
+			$types = $types->filter(function($item)
+			{
+				return $item->slug != 'book';
+			});
+		}
 
 		$data = array(
 			'type'            => 'create',

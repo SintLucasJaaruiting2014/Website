@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'slju_live',
+			'database'  => 'slju_2',
 			'username'  => 'root',
 			'password'  => '',
 			'charset'   => 'utf8',

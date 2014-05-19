@@ -28,7 +28,8 @@ class Profile extends Model {
 		'quote',
 		'website',
 		'location',
-		'approved'
+		'approved',
+		'next_program'
 	);
 
 	/**
