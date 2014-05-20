@@ -5,6 +5,9 @@ Route::get('/', function()
 	return View::make('frontend.index');
 });
 
+Route::get('profiles', 'ProfileController@index');
+Route::get('profiles/{id}', 'ProfileController@show');
+
 Route::group(array('prefix' => 'api'), function()
 {
 	Route::group(array('prefix' => 'v1'), function()
