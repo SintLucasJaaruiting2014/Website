@@ -1,1 +1,1 @@
-rsync -av --delete --exclude '.git' --exclude 'data' --exclude 'app/storage/uploads' --exclude 'app/storage/logs' --exclude 'app/storage/views' --exclude 'app/storage/cache' --exclude 'app/storage/sessions' . admin@rojvroemen.com:domains/rojvroemen.com/public_html/jaaruiting
+rsync -av --delete --exclude '.git' --exclude 'data' --exclude 'public/images' --exclude 'app/storage/uploads' --exclude 'app/storage/logs' --exclude 'app/storage/views' --exclude 'app/storage/cache' --exclude 'app/storage/sessions' . admin@rojvroemen.com:domains/rojvroemen.com/public_html/jaaruiting

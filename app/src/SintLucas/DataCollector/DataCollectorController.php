@@ -177,14 +177,14 @@ class DataCollectorController extends Controller {
 	public function handleProfile()
 	{
 		$profile = $this->profile;
-		$data = Input::only(array('email', 'location', 'website'));
+		$data = Input::only(array('email', 'location', 'website', 'quote'));
 
 		if($profile->program->type->name == 'vmbo')
 		{
-			if(Input::has('quote'))
-			{
-				$data['quote'] = Input::get('quote');
-			}
+			// if(Input::has('quote'))
+			// {
+			// 	$data['quote'] = Input::get('quote');
+			// }
 			if(Input::has('next_program'))
 			{
 				$data['next_program'] = Input::get('next_program');

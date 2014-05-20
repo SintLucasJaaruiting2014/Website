@@ -20,9 +20,7 @@
 	</div>
 	@include('datacollector.partials.formgroup', array('type' => 'text', 'name' => 'website', 'label' => 'Website'))
 
-	@if($profile->program->type->name == 'vmbo')
 	@include('datacollector.partials.formgroup', array('type' => 'textarea', 'name' => 'quote', 'label' => 'Welke quote inspireert/beschrijft jou het meest? (max '.$maxQuote.' karakters)', 'rows' => 2, 'maxlength' => $maxQuote))
-	@endif
 
 	@if($profile->program->type->name == 'vmbo')
 	@include('datacollector.partials.formgroup', array('type' => 'text', 'name' => 'next_program', 'label' => 'Vervolgopleiding'))

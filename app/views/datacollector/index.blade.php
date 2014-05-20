@@ -14,9 +14,7 @@
 		</div>
 		<h1>Jaaruiting data inname</h1>
 		<p>Op deze website kun je alle data ingeven voor het jaaruiting. Ook hebben we een aantal vragen en filters die jullie mogen invullen.</p>
-		<p><strong>Let op!!</strong> Lever ook iets in onder het tabje 'Boekje', dit is namelijk bedoeld voor het jaarboek. Indien je hier niets inleverd
-		zal je quote worden gebruikt.</p>
-		<p>Je hebt nog tot zaterdag 17 mei 22:00u de tijd hiervoor.</p>
+		<p><strong>Let op!!</strong> De inname voor het boekje in gesloten, alles wat nu nog wordt aangepast zal alleen voor de website zijn.</p>
 	</div>
 
 	<div ng-controller="IndexCtrl">
