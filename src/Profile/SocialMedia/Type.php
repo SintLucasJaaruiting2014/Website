@@ -1,5 +1,7 @@
 <?php namespace SintLucas\Profile\SocialMedia;
 
+use InvalidArgumentException;
+
 class Type {
 
 	protected static $types = array();
@@ -18,7 +20,7 @@ class Type {
 	{
 		if( ! isset(static::$types[$key]))
 		{
-			throw new InvalidArgumentException('Invalid social media type.');
+			throw new InvalidArgumentException("Invalid social media type [$key]");
 		}
 
 		return static::$types[$key];
