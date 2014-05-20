@@ -17,6 +17,7 @@ class CreatePortfolioTables extends Migration {
 			$table->engine = 'InnoDB';
 
 			$table->increments('id');
+			$table->integer('profile_id')->unsigned()->index();
 			$table->string('type');
 			$table->string('media_type');
 			$table->integer('media_id')->unsigned()->index();
