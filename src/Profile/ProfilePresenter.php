@@ -6,6 +6,7 @@ class ProfilePresenter extends Presenter {
 
 	protected $fields = array(
 		'id',
+		'student_id',
 		'year',
 		'email',
 		'location',
