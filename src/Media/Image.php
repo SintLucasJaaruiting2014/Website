@@ -6,13 +6,10 @@ class Image extends Model {
 
 	protected $table = 'media_images';
 
+	protected $fillable = array('filename');
+
 	public function crops()
 	{
 		return $this->hasMany('SintLucas\Media\Image\Crop');
-	}
-
-	public function item()
-	{
-		return $this->morphOne('SintLucas\Media\Item', 'resource', 'type', 'resource_id');
 	}
 }
