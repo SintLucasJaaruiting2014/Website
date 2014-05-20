@@ -1,5 +1,6 @@
 <?php namespace SintLucas\Migration;
 
+use SintLucas\Media;
 use SintLucas\School;
 
 class OneToTwo extends Migrator {
@@ -105,6 +106,7 @@ class OneToTwo extends Migrator {
 		));
 
 		$this->createAnswers($userData, $profileId);
+		$this->createPortfolioItem($userData, $profileId);
 		$this->createSocialMedia($userData, $profileId);
 	}
 
@@ -126,7 +128,57 @@ class OneToTwo extends Migrator {
 
 	public function createPortfolioItem($userData, $profileId)
 	{
-		# code...
+		$items = $this->queryOld('portfolio_items')
+			->join('media_items', 'media_items.linkable_id', '=', 'portfolio_items.id')
+			->where('profile_id', '=', $userData->profile_id)
+			->selectRaw('portfolio_items.*, media_items.type as media_type, media_items.id as media_id, media_items.value as media_value')
+			->get();
+
+		foreach($items as $item)
+		{
+			$media = $this->createMediaItem($item);
+			$this->queryNew('portfolio_items')->insert(array(
+				'profile_id' => $profileId,
+				'type' => $item->type_id,
+				'media_type' => get_class($media),
+				'media_id' => $media->id
+			));
+		}
+	}
+
+	public function createMediaItem($item)
+	{
+		switch($item->media_type)
+		{
+			case 'image':
+				$filename = sprintf('%s.%s',$item->media_id, $item->media_value);
+
+				$model = Media\Image::create(array(
+					'filename' => $filename
+				));
+
+				break;
+
+			case 'video':
+
+				if(strpos($item->media_value, 'youtube'))
+				{
+					$type = 'youtube';
+				}
+				else
+				{
+					$type = 'vimeo';
+				}
+
+				$model = Media\Video::create(array(
+					'type' => $type,
+					'url'  => $item->media_value
+				));
+
+				break;
+		}
+
+		return $model;
 	}
 
 	public function createSocialMedia($userData, $profileId)
