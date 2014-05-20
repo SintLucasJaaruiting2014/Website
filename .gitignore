@@ -1,9 +1,13 @@
+.DS_Store
+.env.local.php
+.env.php
+.sass-cache
+/app/assets/bower_components
 /app/config/production
 /bootstrap/compiled.php
 /data
+/node_modules
+/public/images
 /vendor
 composer.phar
-.env.local.php
-.env.php
-.DS_Store
 Thumbs.db
