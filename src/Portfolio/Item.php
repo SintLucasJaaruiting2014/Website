@@ -21,6 +21,6 @@ class Item extends Model {
 
 	public function getTypeAttribute()
 	{
-		return Type::get($this->type_id);
+		return Type::get($this->type);
 	}
 }
