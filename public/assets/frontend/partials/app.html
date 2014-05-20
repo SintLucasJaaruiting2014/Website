@@ -1,4 +1,28 @@
-<h1>Test</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, fuga, ad voluptas molestiae reprehenderit dicta et veniam! Nobis, fugiat, distinctio dolore quae dolores id ratione quibusdam aliquid consequuntur nesciunt soluta?</p>
+<div class="navbar">
+	<div class="inner">
+		<div class="bar">
+			<div class="left">
+				<button class="btn btn-xs btn-default"><span class="glyphicon glyphicon-align-justify"></span></button>
+				<button class="btn btn-xs btn-default">Zoeken</button>
+				<button class="btn btn-xs btn-default" ng-click="toggle('filters')"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+			</div>
+			<div class="right">
+				<a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+				<a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-minus"></span></a>
+			</div>
+			<div class="middle">
+				<a href="#/" class="logo">
+					<span class="text-white">SiNT</span><span class="text-black">LUCAS</span>
+				</a>
+			</div>
+		</div>
+		<div class="filters animate" ng-show="visible('filters')">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae, aperiam earum similique ea inventore impedit dicta molestias commodi nostrum sunt eaque error quisquam laudantium molestiae tenetur. Officia omnis placeat voluptatibus.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae, aperiam earum similique ea inventore impedit dicta molestias commodi nostrum sunt eaque error quisquam laudantium molestiae tenetur. Officia omnis placeat voluptatibus.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae, aperiam earum similique ea inventore impedit dicta molestias commodi nostrum sunt eaque error quisquam laudantium molestiae tenetur. Officia omnis placeat voluptatibus.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae, aperiam earum similique ea inventore impedit dicta molestias commodi nostrum sunt eaque error quisquam laudantium molestiae tenetur. Officia omnis placeat voluptatibus.</p>
+		</div>
+	</div>
+</div>
+<ui-view></ui-view>
 
-<div ui-view></div>
