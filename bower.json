@@ -1,0 +1,12 @@
+{
+  "name": "SintLucas Jaaruiting",
+  "private": true,
+  "dependencies": {
+    "bootstrap-sass": "git://github.com/twbs/bootstrap-sass.git#v3.1.1",
+    "angular": "*",
+    "angular-animate": "*",
+    "underscore": "*",
+    "angular-ui-router": "*"
+  },
+  "devDependencies": {}
+}

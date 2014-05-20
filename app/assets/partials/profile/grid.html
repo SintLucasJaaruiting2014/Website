@@ -1,0 +1,6 @@
+<div class="grid">
+	<a class="item" ng-href="#/profile/{{ profile.id }}" ng-repeat="profile in profiles">
+		<img ng-src="/images/profiles/{{ profile.student_id }}.jpg" alt="" class="img-responsive">
+	</a>
+</div>
+<ui-view></ui-view>

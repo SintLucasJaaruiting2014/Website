@@ -1,0 +1,68 @@
+@import "variables";
+@import "bootstrap";
+@import "navbar";
+@import "profile";
+@import "animate";
+
+body {
+	position: relative;
+	margin-top: 33px;
+}
+
+.container-fluid {
+  @include container-fixed();
+}
+
+.container {
+  @include container-fixed();
+
+  @media (min-width: $screen-sm-min) {
+    width: $container-sm;
+  }
+  @media (min-width: $screen-md-min) {
+    width: $container-md;
+  }
+  @media (min-width: $screen-lg-min) {
+    width: $container-lg;
+  }
+}
+
+.grid {
+	position: absolute;
+	@include make-row(0);
+
+	.item {
+		@include make-xs-column(4, 0);
+		@include make-sm-column(3, 0);
+		@include make-md-column(2, 0);
+		@include make-lg-column(1, 0);
+		border: 1px solid #fff;
+	}
+}
+
+.profile {
+	position: relative;
+	background-color: #fff;
+	@extend .container;
+	padding: 10px 15px 20px;
+
+	.picture {
+		@include make-sm-column(3, 0);
+	}
+
+	.info {
+		@include make-sm-column(9, 0);
+	}
+}
+
+.text-white {
+	color: #fff;
+}
+
+.text-black {
+	color: #000;
+}
+
+.text-orange {
+	color: #ff8200;
+}
