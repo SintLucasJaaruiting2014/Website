@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-// use SintLucas\Core\Exception\SavingErrorException;
-// use SintLucas\Core\Exception\ValidationException;
+// use SintLucas\Core\Exceptions\SavingErrorException;
+// use SintLucas\Core\Exceptions\ValidationException;
 
 App::error(function(ModelNotFoundException $e)
 {

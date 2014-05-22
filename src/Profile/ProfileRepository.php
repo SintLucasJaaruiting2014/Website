@@ -9,4 +9,11 @@ class ProfileRepository extends EloquentRepository {
 		$this->model = $model;
 	}
 
+	public function paginateRandom($seed, $perPage = 30)
+	{
+		$query = $this->model->newQuery();
+
+		return $query->orderByRaw('RAND(?)', array($seed))->paginate($perPage);
+	}
+
 }

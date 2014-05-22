@@ -13,7 +13,7 @@
 
 App::before(function($request)
 {
-	SintLucas\Profile\SocialMedia\Type::set(Config::get('socialmedia'));
+	SintLucas\Profile\SocialMediaType::set(Config::get('socialmedia'));
 });
 
 
@@ -35,7 +35,7 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-	if (Auth::guest()) return Redirect::guest('login');
+	if (Auth::guest()) return Redirect::guest(URL::route('auth.show_login'));
 });
 
 
@@ -57,7 +57,7 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Auth::check()) return Redirect::to('/');
+	if (Auth::check()) return Redirect::home();
 });
 
 /*

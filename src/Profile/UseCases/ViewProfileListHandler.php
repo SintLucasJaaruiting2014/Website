@@ -12,7 +12,7 @@ class ViewProfileListHandler implements HandlerInterface {
 
 	public function handle($command)
 	{
-		$profiles = $this->profileRepository->all();
+		$profiles = $this->profileRepository->paginateRandom($command->seed);
 
 		return new ViewProfileListResponse($profiles);
 	}

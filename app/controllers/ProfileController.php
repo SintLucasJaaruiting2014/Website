@@ -9,11 +9,12 @@ use SintLucas\Profile\ProfileRepository;
 use SintLucas\Profile\UseCases\ViewProfileListRequest;
 use SintLucas\Profile\UseCases\ViewProfileRequest;
 
-class ProfileController extends Controller {
+class ProfileController extends BaseController {
 
 	private $bus;
-	private $profileRepository;
 	private $request;
+	private $seedGenerator;
+	private $session;
 
 	public function __construct(CommandBus $bus, Request $request, SeedGenerator $seedGenerator, SessionManager $session)
 	{
@@ -25,13 +26,10 @@ class ProfileController extends Controller {
 
 	public function index()
 	{
-		$seed = $this->getSeed();
-
-		$request = new ViewProfileListRequest($seed);
-
+		$request  = new ViewProfileListRequest($this->getSeed());
 		$response = $this->bus->execute($request);
 
-		dd($response);
+		// $this->renderView();
 	}
 
 	public function show($id)

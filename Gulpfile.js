@@ -5,23 +5,23 @@ var $ = require('gulp-load-plugins')();
 var dir = {
     sass: {
         source: 'app/assets/sass',
-        target: 'public/assets/frontend/css'
+        target: 'public/assets/css'
     },
     js: {
         source: 'app/assets/js',
-        target: 'public/assets/frontend/js'
+        target: 'public/assets/js'
     },
     partials: {
         source: 'app/assets/partials',
-        target: 'public/assets/frontend/partials'
+        target: 'public/assets/partials'
     },
     fonts: {
         source: 'app/assets/fonts',
-        target: 'public/assets/frontend/fonts'
+        target: 'public/assets/fonts'
     },
     img: {
         source: 'app/assets/img',
-        target: 'public/assets/frontend/img'
+        target: 'public/assets/img'
     }
 }
 

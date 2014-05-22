@@ -16,9 +16,9 @@ class Profile extends Model {
 		return $this->belongsToMany('SintLucas\Filter\Option', 'profile_properties');
 	}
 
-	public function socialMedia()
+	public function socialMediaAccounts()
 	{
-		return $this->hasMany('SintLucas\Profile\SocialMedia\Account');
+		return $this->hasMany('SintLucas\Profile\SocialMediaAccount');
 	}
 
 	public function user()
@@ -26,4 +26,8 @@ class Profile extends Model {
 		return $this->belongsTo('SintLucas\User\User');
 	}
 
+	public function addProperties()
+	{
+		//
+	}
 }
