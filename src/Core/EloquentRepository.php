@@ -1,4 +1,4 @@
-<?php namespace SintLucas\Core\Repository;
+<?php namespace SintLucas\Core;
 
 use InvalidArgumentException;
 

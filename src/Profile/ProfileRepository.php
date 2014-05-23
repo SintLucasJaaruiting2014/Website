@@ -16,4 +16,9 @@ class ProfileRepository extends EloquentRepository {
 		return $query->orderByRaw('RAND(?)', array($seed))->paginate($perPage);
 	}
 
+	public function loadRelation(Profile $profile, $relation)
+	{
+		return $profile->load($relation);
+	}
+
 }

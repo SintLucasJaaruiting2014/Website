@@ -22,10 +22,10 @@ Route::group(array('before' => 'guest'), function()
 	));
 });
 
-Route::group(array('before' => 'auth'), function()
+Route::group(array('before' => ''), function()
 {
-	Route::get('profiles', 'ProfileController@index');
-	Route::get('profiles/{id}', 'ProfileController@show');
+	Route::get('profiles', 'SintLucas\Profile\Controllers\Api\ProfileController@index');
+	Route::get('profiles/{id}', 'SintLucas\Profile\Controllers\Api\ProfileController@show');
 
 	Route::get('question/answer', 'QuestionController@answer');
 });

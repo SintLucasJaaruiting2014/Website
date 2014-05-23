@@ -7,9 +7,9 @@
 		"laravel/framework": "4.1.*",
 		"symfony/yaml": "2.4.*",
 		"bugsnag/bugsnag-laravel": "1.0.*",
-		"league/fractal": "0.7.*@dev",
-		"intervention/image": "1.*",
-		"intervention/imagecache": "dev-master",
+		"league/fractal": "dev-develop",
+		"intervention/image": "2.*",
+		"intervention/imagecache": "2.*",
 		"rhumsaa/uuid": "2.7.1"
 	},
 	"autoload": {
