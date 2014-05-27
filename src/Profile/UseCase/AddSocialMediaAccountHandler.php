@@ -1,4 +1,4 @@
-<?php namespace SintLucas\Profile\UseCases;
+<?php namespace SintLucas\Profile\UseCase;
 
 use SintLucas\CommandBus\HandlerInterface;
 

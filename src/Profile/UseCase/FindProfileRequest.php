@@ -1,6 +1,6 @@
-<?php namespace SintLucas\Profile\UseCases;
+<?php namespace SintLucas\Profile\UseCase;
 
-class ViewProfileRequest {
+class FindProfileRequest {
 
 	public $id;
 

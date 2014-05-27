@@ -1,4 +1,4 @@
-<?php namespace SintLucas\Question\UseCases\AnswerQuestion;
+<?php namespace SintLucas\Question\UseCase\AnswerQuestion;
 
 use SintLucas\Question\Answer;
 

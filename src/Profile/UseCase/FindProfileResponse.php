@@ -1,10 +1,10 @@
-<?php namespace SintLucas\Profile\UseCases;
+<?php namespace SintLucas\Profile\UseCase;
 
 use SintLucas\Profile\Profile;
 use SintLucas\School\Program;
 use SintLucas\User\User;
 
-class ViewProfileResponse {
+class FindProfileResponse {
 
 	public $profile;
 	public $user;

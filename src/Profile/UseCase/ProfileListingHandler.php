@@ -1,9 +1,9 @@
-<?php namespace SintLucas\Profile\UseCases;
+<?php namespace SintLucas\Profile\UseCase;
 
 use SintLucas\CommandBus\HandlerInterface;
 use SintLucas\Profile\ProfileRepository;
 
-class ViewProfileListHandler implements HandlerInterface {
+class ProfileListingHandler implements HandlerInterface {
 
 	public function __construct(ProfileRepository $profileRepository)
 	{
@@ -14,7 +14,7 @@ class ViewProfileListHandler implements HandlerInterface {
 	{
 		$profiles = $this->profileRepository->paginateRandom($command->seed);
 
-		return new ViewProfileListResponse($profiles);
+		return new ProfileListingResponse($profiles);
 	}
 
 }

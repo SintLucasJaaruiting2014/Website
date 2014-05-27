@@ -1,8 +1,8 @@
-<?php namespace SintLucas\Profile\UseCases;
+<?php namespace SintLucas\Profile\UseCase;
 
 use SintLucas\Profile\Profile;
 
-class ViewProfileListResponse {
+class ProfileListingResponse {
 
 	public $profiles;
 

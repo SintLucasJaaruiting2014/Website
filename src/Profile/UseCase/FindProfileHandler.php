@@ -1,4 +1,4 @@
-<?php namespace SintLucas\Profile\UseCases\ViewProfile;
+<?php namespace SintLucas\Profile\UseCase;
 
 use SintLucas\CommandBus\HandlerInterface;
 use SintLucas\Profile\ProfileRepository;
@@ -6,7 +6,7 @@ use SintLucas\Profile\SocialMediaAccountRepository;
 use SintLucas\School\ProgramRepository;
 use SintLucas\User\UserRepository;
 
-class ViewProfileHandler implements HandlerInterface {
+class FindProfileHandler implements HandlerInterface {
 
 	protected $profileRepository;
 	protected $programRepository;
@@ -28,7 +28,7 @@ class ViewProfileHandler implements HandlerInterface {
 		$program             = $this->programRepository->find($profile->program_id);
 		$socialMediaAccounts = $this->socialMediaAccountRepository->getForProfile($profile);
 
-		return new ViewProfileResponse($profile, $user, $program, $socialMediaAccounts);
+		return new FindProfileResponse($profile, $user, $program, $socialMediaAccounts);
 	}
 
 }
