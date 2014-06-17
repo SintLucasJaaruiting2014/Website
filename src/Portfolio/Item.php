@@ -1,13 +1,12 @@
 <?php namespace SintLucas\Portfolio;
 
-use SintLucas\Core\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model {
 
 	protected $table = 'portfolio_items';
 
 	protected $appends = array('type');
-	protected $hidden = array('type_id');
 
 	public function profile()
 	{
@@ -21,6 +20,6 @@ class Item extends Model {
 
 	public function getTypeAttribute()
 	{
-		return Type::get($this->type);
+		return Type::get($this->attributes['type']);
 	}
 }

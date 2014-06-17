@@ -18,7 +18,7 @@ class PropertyListingHandler implements HandlerInterface {
 	public function handle($command)
 	{
 		$profile = $this->profileRepository->find($command->profileId);
-		$properties = $this->propertyRepository->findBy($profile);
+		$properties = $this->propertyRepository->getBy($profile);
 
 		return new PropertyListingResponse($profile, $properties);
 	}

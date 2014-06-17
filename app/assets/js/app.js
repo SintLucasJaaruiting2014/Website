@@ -48,7 +48,7 @@ app.controller('FilterCtrl', ['$scope', function ($scope) {
 
 app.controller('GridCtrl', ['$scope', '$http', function($scope, $http) {
 
-	$http.get('/api/v1/profile?page=5').success(function(response) {
+	$http.get('/api/v1/profile').success(function(response) {
 		$scope.profiles = response.data;
 	});
 

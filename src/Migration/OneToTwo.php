@@ -1,15 +1,39 @@
 <?php namespace SintLucas\Migration;
 
+use Rhumsaa\Uuid\Uuid;
 use SintLucas\Media;
 use SintLucas\School;
 
 class OneToTwo extends Migrator {
 
+	protected $questions;
+	protected $filters;
+	protected $options;
+
 	public function run()
 	{
+		$this->migrateLocations();
 		$this->migratePrograms();
 		$this->migrateQuestions();
+		$this->migrateFilters();
 		$this->migrateUsersAndProfiles();
+	}
+
+	public function migrateLocations()
+	{
+		$locations = $this->queryOld('school_locations')->get();
+
+		foreach($locations as $location)
+		{
+			$this->locations[$location->id] = $this->createLocation($location);
+		}
+	}
+
+	public function createLocation($location)
+	{
+		return $this->queryNew('school_locations')->insertGetId(array(
+			'name' => $location->name
+		));
 	}
 
 	public function migratePrograms()
@@ -28,27 +52,51 @@ class OneToTwo extends Migrator {
 
 	public function createProgram($program)
 	{
-		$type = $this->getProgramType($program->type_id, $program->location_id);
+		$type = $this->getProgramType($program->type_id);
 
 		return $this->queryNew('school_programs')->insert(array(
-			'type_id' => $type,
+			'location_id' => $this->locations[$program->location_id],
+			'type' => $type,
 			'name' => $program->name
 		));
 	}
 
-	public function getProgramType($type, $location)
+	public function getProgramType($type)
 	{
-		if($type == 2)
+		return $type == 1 ? School\Type::MBO : School\Type::VMBO;
+	}
+
+	public function migrateFilters()
+	{
+		$filters = $this->queryOld('profile_filters')->get();
+
+		foreach($filters as $filter)
 		{
-			return School\Type::VMBO;
+			$this->filters[$filter->id] = $this->createFilter($filter);
 		}
 
-		if($location == 1)
-		{
-			return School\Type::MBO_BOX;
-		}
+		$options = $this->queryOld('profile_filteroptions')->get();
 
-		return School\Type::MBO_EHV;
+		foreach($options as $option)
+		{
+			$this->options[$option->id] = $this->createOption($option);
+		}
+	}
+
+	public function createFilter($filter)
+	{
+		return $this->queryNew('filter_filters')->insertGetId(array(
+			'multiple_choice' => (bool) $filter->multiple_choice,
+			'label' => $filter->label
+		));
+	}
+
+	public function createOption($option)
+	{
+		return $this->queryNew('filter_options')->insertGetId(array(
+			'filter_id' => (int) $this->filters[$option->filter_id],
+			'label' => $option->value
+		));
 	}
 
 	public function migrateQuestions()
@@ -78,9 +126,46 @@ class OneToTwo extends Migrator {
 		{
 			foreach($users as $userData)
 			{
-				$self->createUserAndProfile($userData);
+				if($self->hasProfilePicture($userData->student_id))
+				{
+					$self->createUserAndProfile($userData);
+				}
 			}
 		});
+	}
+
+	public function hasProfilePicture($id)
+	{
+		$filename = $this->getProfilePictureFilename($id);
+
+		return file_exists($this->getProfilePictureSourcePath($filename));
+	}
+
+	public function getProfilePictureFilename($id)
+	{
+		return "$id.jpg";
+	}
+
+	public function getProfilePictureSourcePath($filename)
+	{
+		return base_path('data/images/'.$filename);
+	}
+
+	public function getImageStoragePath($filename)
+	{
+		return storage_path('images/'.$filename);
+	}
+
+	public function createAndMoveProfilePicture($id)
+	{
+		$filename = $this->getProfilePictureFilename($id);
+		$newName  = Uuid::uuid4().'.jpg';
+
+		rename($this->getProfilePictureSourcePath($filename), $this->getImageStoragePath($newName));
+
+		return $this->queryNew('media_images')->insertGetId(array(
+			'filename' => $newName
+		));
 	}
 
 	public function createUserAndProfile($userData)
@@ -93,6 +178,8 @@ class OneToTwo extends Migrator {
 			'last_name'      => trim($userData->last_name_prefix . ' ' . $userData->last_name)
 		));
 
+		$pictureId = $this->createAndMoveProfilePicture($userData->student_id);
+
 		$profileId = $this->queryNew('profile_profiles')->insertGetId(array(
 			'program_id' => $userData->program_id,
 			'student_id' => $userData->student_id,
@@ -102,12 +189,14 @@ class OneToTwo extends Migrator {
 			'website'    => $userData->website,
 			'location'   => $userData->location,
 			'quote'      => $userData->quote,
-			'status'     => (int) $userData->approved == 1 ? 2 : 0
+			'status'     => (int) $userData->approved == 1 ? 2 : 0,
+			'image_id'   => (int) $pictureId
 		));
 
 		$this->createAnswers($userData, $profileId);
-		$this->createPortfolioItem($userData, $profileId);
-		$this->createSocialMedia($userData, $profileId);
+		$this->createPortfolioItems($userData, $profileId);
+		$this->createSocialMediaAccounts($userData, $profileId);
+		$this->createProperties($userData, $profileId);
 	}
 
 	public function createAnswers($userData, $profileId)
@@ -126,7 +215,22 @@ class OneToTwo extends Migrator {
 		}
 	}
 
-	public function createPortfolioItem($userData, $profileId)
+	public function createProperties($userData, $profileId)
+	{
+		$properties = $this->queryOld('profile_profileproperty')
+			->where('profile_id', '=', $userData->profile_id)
+			->get();
+
+		foreach($properties as $property)
+		{
+			$this->queryNew('profile_properties')->insert(array(
+				'profile_id' => $profileId,
+				'option_id' => $this->options[$property->option_id]
+			));
+		}
+	}
+
+	public function createPortfolioItems($userData, $profileId)
 	{
 		$items = $this->queryOld('portfolio_items')
 			->join('media_items', 'media_items.linkable_id', '=', 'portfolio_items.id')
@@ -153,7 +257,7 @@ class OneToTwo extends Migrator {
 			case 'image':
 				$filename = sprintf('%s.%s',$item->media_id, $item->media_value);
 
-				$model = Media\Image::create(array(
+				$model = Media\Image\Image::create(array(
 					'filename' => $filename
 				));
 
@@ -170,7 +274,7 @@ class OneToTwo extends Migrator {
 					$type = 'vimeo';
 				}
 
-				$model = Media\Video::create(array(
+				$model = Media\Video\Video::create(array(
 					'type' => $type,
 					'url'  => $item->media_value
 				));
@@ -181,7 +285,7 @@ class OneToTwo extends Migrator {
 		return $model;
 	}
 
-	public function createSocialMedia($userData, $profileId)
+	public function createSocialMediaAccounts($userData, $profileId)
 	{
 		$accounts = $this->queryOld('profile_socialmedia')
 			->where('profile_id', '=', $userData->profile_id)

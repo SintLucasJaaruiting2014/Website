@@ -3,7 +3,7 @@
 return array(
 
 	'storage' => array(
-		'path' => storage_path('uploads')
+		'path' => storage_path('images')
 	),
 
 	'types' => array(

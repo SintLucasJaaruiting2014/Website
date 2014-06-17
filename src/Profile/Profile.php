@@ -1,6 +1,6 @@
 <?php namespace SintLucas\Profile;
 
-use SintLucas\Core\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model {
 
@@ -26,8 +26,8 @@ class Profile extends Model {
 		return $this->belongsTo('SintLucas\User\User');
 	}
 
-	public function addProperties()
+	public function picture()
 	{
-		//
+		return $this->belongsTo('SintLucas\Media\Image\Image', 'image_id');
 	}
 }

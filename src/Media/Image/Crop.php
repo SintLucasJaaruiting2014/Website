@@ -1,6 +1,6 @@
-<?php namespace SintLucas\Media\Crop;
+<?php namespace SintLucas\Media\Image;
 
-use SintLucas\Core\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class Crop extends Model {
 
@@ -8,6 +8,6 @@ class Crop extends Model {
 
 	public function image()
 	{
-		return $this->belongsTo('SintLucas\Media\Image');
+		return $this->belongsTo('SintLucas\Media\Image\Image');
 	}
 }

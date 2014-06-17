@@ -9,9 +9,11 @@ class SocialMediaAccountRepository extends EloquentRepository {
 		$this->model = $model;
 	}
 
-	public function getForProfile(Profile $profile)
+	public function getBy(Profile $profile)
 	{
-		return $profile->socialMediaAccounts;
+		return $this->model
+			->where('profile_id', $profile->id)
+			->get();
 	}
 
 }

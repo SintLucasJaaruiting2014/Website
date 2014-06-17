@@ -1,10 +1,12 @@
 <?php namespace SintLucas\Filter;
 
-use SintLucas\Core\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class Option extends Model {
 
 	protected $table = 'filter_options';
+
+	protected $hidden = array('filter_id');
 
 	public function filter()
 	{

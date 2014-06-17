@@ -2,7 +2,7 @@
 
 use Illuminate\Auth\Reminders\RemindableInterface;
 use Illuminate\Auth\UserInterface;
-use SintLucas\Core\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Model implements UserInterface, RemindableInterface {
 

@@ -1,6 +1,6 @@
 <?php namespace SintLucas\Profile;
 
-use SintLucas\Core\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class Property extends Model {
 
@@ -9,10 +9,5 @@ class Property extends Model {
 	public function profile()
 	{
 		return $this->belongsTo('SintLucas\Profile\Profile');
-	}
-
-	public function addProperties()
-	{
-		//
 	}
 }

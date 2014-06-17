@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use SintLucas\CommandBus\CommandBus;
-use SintLucas\Profile\UseCases\ViewProfileRequest;
+use SintLucas\Profile\UseCase\FindProfileRequest;
 
 class FrontendController extends BaseController {
 
@@ -22,7 +22,7 @@ class FrontendController extends BaseController {
 
 	public function showProfile($id)
 	{
-		$request  = new ViewProfileRequest($id);
+		$request  = new FindProfileRequest($id);
 		$response = $this->bus->execute($request);
 
 		$this->title = 'Profiel';

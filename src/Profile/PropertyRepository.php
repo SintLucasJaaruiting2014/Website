@@ -9,4 +9,10 @@ class PropertyRepository {
 		$this->model = $model;
 	}
 
+	public function getBy(Profile $profile)
+	{
+		return $this->model
+			->where('profile_id', $profile->id)
+			->get();
+	}
 }

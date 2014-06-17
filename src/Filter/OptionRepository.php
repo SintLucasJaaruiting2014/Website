@@ -9,4 +9,11 @@ class OptionRepository extends EloquentRepository {
 		$this->model = $model;
 	}
 
+	public function getBy(Filter $filter)
+	{
+		return $this->model
+			->where('filter_id', $filter->id)
+			->get();
+	}
+
 }

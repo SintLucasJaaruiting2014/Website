@@ -6,8 +6,8 @@ use Illuminate\Session\SessionManager;
 use SintLucas\CommandBus\CommandBus;
 use SintLucas\Core\SeedGenerator;
 use SintLucas\Profile\ProfileRepository;
-use SintLucas\Profile\UseCases\ViewProfileListRequest;
-use SintLucas\Profile\UseCases\ViewProfileRequest;
+use SintLucas\Profile\UseCase\ProfileListingRequest;
+use SintLucas\Profile\UseCase\FindProfileRequest;
 
 class ProfileController extends BaseController {
 
@@ -26,7 +26,7 @@ class ProfileController extends BaseController {
 
 	public function index()
 	{
-		$request  = new ViewProfileListRequest($this->getSeed());
+		$request  = new ProfileListingRequest($this->getSeed());
 		$response = $this->bus->execute($request);
 
 		// $this->renderView();
@@ -34,7 +34,7 @@ class ProfileController extends BaseController {
 
 	public function show($id)
 	{
-		$request = new ViewProfileRequest($id);
+		$request = new FindProfileRequest($id);
 
 		$response = $this->bus->execute($request);
 

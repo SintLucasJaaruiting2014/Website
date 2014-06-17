@@ -12,7 +12,11 @@ class ProfileListingHandler implements HandlerInterface {
 
 	public function handle($command)
 	{
-		$profiles = $this->profileRepository->paginateRandom($command->seed);
+		$profiles = $this->profileRepository->paginateRandom(
+			$command->seed,
+			$command->page,
+			$command->perPage
+		);
 
 		return new ProfileListingResponse($profiles);
 	}

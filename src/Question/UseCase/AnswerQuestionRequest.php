@@ -4,11 +4,11 @@ use SintLucas\Question\Answer;
 
 class AnswerQuestionRequest {
 
-	public $answer;
+	public $profileId;
 
-	public function __construct(Answer $answer)
+	public function __construct($profileId)
 	{
-		$this->answer = $answer;
+		$this->profileId = $profileId;
 	}
 
 }

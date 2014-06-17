@@ -67,7 +67,7 @@ return array(
 	|
 	*/
 
-	'key' => 'YourSecretKey!!!',
+	'key' => '4AQH1OLQkNhxiuZltMq1ZqIrhmhwAgCa',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -108,6 +108,8 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+		'SintLucas\Image\ImageServiceProvider',
+		'Barryvdh\Cors\CorsServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
 		'Bugsnag\BugsnagLaravel\BugsnagLaravelServiceProvider'
 

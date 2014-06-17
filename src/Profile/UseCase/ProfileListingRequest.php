@@ -3,10 +3,14 @@
 class ProfileListingRequest {
 
 	public $seed;
+	public $page;
+	public $perPage;
 
-	public function __construct($seed)
+	public function __construct($seed, $page, $perPage)
 	{
-		$this->seed = $seed;
+		$this->seed    = $seed;
+		$this->page    = $page;
+		$this->perPage = $perPage;
 	}
 
 }

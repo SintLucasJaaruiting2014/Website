@@ -1,19 +1,24 @@
 <?php namespace SintLucas\School;
 
-use SintLucas\Core\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class Program extends Model {
 
 	protected $table = 'school_programs';
 
-	public function users()
+	public function location()
 	{
-		return $this->hasMany('SintLucas\User\User');
+		return $this->belongsTo('SintLucas\School\Location');
 	}
 
-	public function getTypeAttribute()
+	public function profiles()
 	{
-		return Type::$types[$this->type_id];
+		return $this->hasMany('SintLucas\Profile\Profile');
+	}
+
+	public function getTypeAttribute($type)
+	{
+		return Type::$types[$type];
 	}
 
 }

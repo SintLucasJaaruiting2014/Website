@@ -6,8 +6,8 @@ use Illuminate\Session\SessionManager;
 use Illuminate\Support\Str;
 use SintLucas\CommandBus\CommandBus;
 use SintLucas\Profile\ProfileRepository;
-use SintLucas\Profile\UseCases\ViewProfileListRequest;
-use SintLucas\Profile\UseCases\ViewProfileRequest;
+use SintLucas\Profile\UseCase\ProfileListingRequest;
+use SintLucas\Profile\UseCase\FindProfileRequest;
 
 class QuestionController extends BaseController {
 

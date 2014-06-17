@@ -1,6 +1,6 @@
 <?php namespace SintLucas\Filter;
 
-use SintLucas\Core\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class Filter extends Model {
 

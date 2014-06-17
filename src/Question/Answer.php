@@ -1,6 +1,6 @@
 <?php namespace SintLucas\Question;
 
-use SintLucas\Core\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model {
 

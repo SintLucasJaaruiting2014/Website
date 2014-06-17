@@ -31,7 +31,7 @@ return array(
     */
 
     'paths' => array(
-        storage_path('uploads')
+        storage_path('images')
     ),
 
     /*
@@ -47,16 +47,18 @@ return array(
     |
     */
 
+    // 'templates' => App::make('ImageCropManager'), <-- implement this!
+
     'templates' => array(
 
-        'dcthumb' => function($image) {
-            return $image->grab(360, 360);
+        'grid' => function($image) {
+            return $image->resize(400, null, true)->crop(400, 400, 0, 50);
         },
-        'medium' => function($image) {
-            return $image->grab(480, 360);
+        'profile' => function($image) {
+            return $image->grab(220, 220);
         },
-        'large' => function($image) {
-            return $image->resize(1200, 1200, true, false);
+        'network' => function($image) {
+            return $image->grab(140, 140);
         }
 
     ),
